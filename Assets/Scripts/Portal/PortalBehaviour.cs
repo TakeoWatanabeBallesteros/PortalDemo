@@ -16,6 +16,8 @@ public class PortalBehaviour : MonoBehaviour
     [SerializeField] 
     private Transform playerPosition;
     [SerializeField] 
+    private Transform playerCamera;
+    [SerializeField] 
     private float offsetNearPlane;
     [SerializeField]
     private List<Transform> validPoints;
@@ -42,16 +44,17 @@ public class PortalBehaviour : MonoBehaviour
     {
         // Takes the local position of the player from the other portal
         // and converts it to local position for my mirror portalCamera
-        Vector3 playerWorldPosition = playerPosition.position;
+        Vector3 playerWorldPosition = playerCamera.position;
         Vector3 playerLocalPosition = otherPortalTransform.InverseTransformPoint(playerWorldPosition);
         mirrorPortal.portalCamera.transform.position = mirrorPortal.transform.TransformPoint(playerLocalPosition);
         
         // Takes the local forward of the player from the other portal
         // and converts it to local forward for my mirror portalCamera
-        Vector3 playerWorldDirection = Camera.main.transform.forward;
+        Vector3 playerWorldDirection = playerCamera.transform.forward;
         Vector3 playerLocalDirection = otherPortalTransform.InverseTransformDirection(playerWorldDirection);
         mirrorPortal.portalCamera.transform.forward = mirrorPortal.transform.TransformDirection(playerLocalDirection);
-
+        
+        // The camera starts from the wall
         float distance = Vector3.Distance(mirrorPortal.portalCamera.transform.position,
             mirrorPortal.transform.position);
         mirrorPortal.portalCamera.nearClipPlane = distance + offsetNearPlane;
@@ -63,6 +66,8 @@ public class PortalBehaviour : MonoBehaviour
         RaycastHit hitInfo;
         position = Vector3.zero;
         normal = Vector3.forward;
+        transform.position = position;
+        transform.rotation = Quaternion.LookRotation(normal);
         
         if (Physics.Raycast(ray, out hitInfo, maxDistance, portalLayerMask.value))
         {
@@ -82,19 +87,27 @@ public class PortalBehaviour : MonoBehaviour
                         {
                             float distance = Vector3.Distance(position, hitInfo.point);
                             float dotAngle = Vector3.Dot(normal, hitInfo.normal);
-                            if (!(distance >= minValidDistance && distance <= maxValidDistance &&
+                            // if one of the conditions is false the portal cant be there
+                            if (!(distance >= minValidDistance && distance <= maxValidDistance && 
                                   dotAngle > minDotAngle))
                                 return false;
                         }
-
-                        return true;
+                        else
+                        {
+                            return false;
+                        }
                     }
-
-                    return false;
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
-            return false;
+            else
+            {
+                return false;
+            }
         }
-        return true;
+        return false;
     }
 }
