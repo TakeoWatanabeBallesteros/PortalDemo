@@ -11,7 +11,7 @@ public class HeadBobController : MonoBehaviour
     private float frequency;
     [Space] 
     [SerializeField] 
-    private Transform camera;
+    private Transform _camera;
     [SerializeField] 
     private Transform cameraHolder;
 
@@ -22,13 +22,13 @@ public class HeadBobController : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
-        startPos = camera.localPosition;
+        startPos = _camera.localPosition;
     }
     
     void Update()
     {
         CheckMotion();
-        camera.LookAt(FocusTarget());
+        _camera.LookAt(FocusTarget());
     }
 
     private void CheckMotion()
@@ -50,13 +50,13 @@ public class HeadBobController : MonoBehaviour
     }
     
     private void PlayMotion(Vector3 motion){
-        camera.localPosition += motion; 
+        _camera.localPosition += motion; 
     }
 
     private void ResetPosition()
     {
-        if(camera.localPosition == startPos) return;
-        camera.localPosition = Vector3.Lerp(camera.localPosition, startPos, 1 * Time.deltaTime);
+        if(_camera.localPosition == startPos) return;
+        _camera.localPosition = Vector3.Lerp(_camera.localPosition, startPos, 1 * Time.deltaTime);
     }
 
     private Vector3 FocusTarget()

@@ -15,6 +15,10 @@ public class PlayerLook : MonoBehaviour
     private Transform playerHead;
     [SerializeField] 
     private float sensibility;
+    [SerializeField] 
+    private float bottomClamp;
+    [SerializeField] 
+    private float topClamp;
 
     private float yaw;
     private float pitch;
@@ -47,6 +51,15 @@ public class PlayerLook : MonoBehaviour
         Vector2 input = lookAction.action.ReadValue<Vector2>();
         yaw += input.x * sensibility * Time.deltaTime;
         pitch -= input.y * sensibility * Time.deltaTime;
-        playerHead.localRotation = Quaternion.Euler(pitch, yaw, 0.0f);
+        pitch = ClampAngle(pitch, bottomClamp, topClamp);
+        playerHead.localRotation = Quaternion.Euler(pitch, 0.0f, 0.0f);
+        transform.rotation = Quaternion.Euler(0.0f, yaw, 0.0f);
+    }
+    
+    private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
+    {
+        if (lfAngle < -360f) lfAngle += 360f;
+        if (lfAngle > 360f) lfAngle -= 360f;
+        return Mathf.Clamp(lfAngle, lfMin, lfMax);
     }
 }
