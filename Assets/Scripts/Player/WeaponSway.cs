@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 
 public class WeaponSway : MonoBehaviour
 {
-    [SerializeField] public InputActionReference lookInput;
+    [SerializeField] 
+    private InputActionReference lookInput;
     
     [Space] [Header("Sway Settings")]
     [SerializeField] 
@@ -30,7 +31,7 @@ public class WeaponSway : MonoBehaviour
     public void OnLook(InputAction.CallbackContext context)
     {
         Vector2 look = context.ReadValue<Vector2>();
-        look *= sensitivityMultiplier;
+        look *= sensitivityMultiplier * Time.deltaTime;
         yawChange = look.x;
         pitchChange = look.y;
     }
