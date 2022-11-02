@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
@@ -27,8 +28,19 @@ public class PortalBehaviour : MonoBehaviour
     private float maxValidDistance;
     [SerializeField] 
     private float minDotAngle;
-    
-    
+    [SerializeField] 
+    private InputActionReference shootInput;
+
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+
     private void Start()
     {
         

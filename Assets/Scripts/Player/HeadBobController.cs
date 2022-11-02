@@ -30,6 +30,10 @@ public class HeadBobController : MonoBehaviour
         CheckMotion();
         _camera.LookAt(FocusTarget());
     }
+    
+    private void PlayMotion(Vector3 motion){
+        _camera.localPosition += motion; 
+    }
 
     private void CheckMotion()
     {
@@ -45,12 +49,8 @@ public class HeadBobController : MonoBehaviour
     {
         Vector3 pos = Vector3.zero;
         pos.y += Mathf.Sin(Time.deltaTime * frequency) * amplitude;
-        pos.x += Mathf.Cos(Time.deltaTime * frequency / 2) * amplitude * 2;
+        pos.x += Mathf.Cos(Time.deltaTime * frequency * 2) * amplitude / 2;
         return pos;
-    }
-    
-    private void PlayMotion(Vector3 motion){
-        _camera.localPosition += motion; 
     }
 
     private void ResetPosition()

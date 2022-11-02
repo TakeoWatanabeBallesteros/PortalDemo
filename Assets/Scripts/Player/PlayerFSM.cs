@@ -11,7 +11,10 @@ public class PlayerFSM : MonoBehaviour
     private InputActionReference moveInput;
     [SerializeField] 
     private InputActionReference jumpInput;
-    [Space]
+
+    [Space] 
+    [SerializeField] 
+    private float speed;
     [SerializeField] 
     private float gravity;
     
@@ -64,7 +67,19 @@ public class PlayerFSM : MonoBehaviour
             verticalVelocity = 0.0f;
         }
         
-        collisionFlags = controller.Move(transform.forward*0.01f + new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
+        // normalise input direction
+        Vector3 inputDirection = new Vector3(MoveInput.x, 0.0f, MoveInput.y).normalized;
+
+        // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
+        // if there is a move input rotate player when the player is moving
+        if (MoveInput != Vector2.zero)
+        {
+            // move
+            inputDirection = transform.right * MoveInput.x + transform.forward * MoveInput.y;
+        }
+        // move the player
+        collisionFlags =  controller.Move(inputDirection.normalized * (speed * Time.deltaTime) +
+                                           new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
     }
 
     private void AddStates()

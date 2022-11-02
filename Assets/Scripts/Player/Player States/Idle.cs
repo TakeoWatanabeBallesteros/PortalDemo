@@ -19,6 +19,7 @@ public class Idle : StateBase
 
     public override void OnLogic()
     {
+        
         base.OnLogic();
     }
 
