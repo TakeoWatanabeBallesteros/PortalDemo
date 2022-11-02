@@ -10,7 +10,7 @@ using UnityEngine.TextCore.LowLevel;
 public class PlayerLook : MonoBehaviour
 {
     [SerializeField] 
-    private InputActionReference lookAction;
+    private InputActionReference lookInput;
     [SerializeField] 
     private Transform playerHead;
     [SerializeField] 
@@ -25,12 +25,12 @@ public class PlayerLook : MonoBehaviour
     
     private void OnEnable()
     {
-        lookAction.action.Enable();
+        lookInput.action.Enable();
     }
 
     private void OnDisable()
     {
-        lookAction.action.Disable();
+        lookInput.action.Disable();
     }
 
     // Start is called before the first frame update
@@ -48,7 +48,7 @@ public class PlayerLook : MonoBehaviour
 
     private void Look()
     {
-        Vector2 input = lookAction.action.ReadValue<Vector2>();
+        Vector2 input = lookInput.action.ReadValue<Vector2>();
         yaw += input.x * sensibility * Time.deltaTime;
         pitch -= input.y * sensibility * Time.deltaTime;
         pitch = ClampAngle(pitch, bottomClamp, topClamp);

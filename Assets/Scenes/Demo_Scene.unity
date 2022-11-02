@@ -2613,7 +2613,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0003c3de9d93a44f8b81d015c6ffeb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grounded: 0
+  moveInput: {fileID: 8130185064591157487, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
+  jumpInput: {fileID: 0}
   gravity: -9.8
 --- !u!114 &827085787
 MonoBehaviour:
@@ -2643,7 +2644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93dcba7befeabea4b9dd11649e7e8c02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookAction: {fileID: -157715672235557779, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
+  lookInput: {fileID: -157715672235557779, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
   playerHead: {fileID: 744968923}
   sensibility: 10
   bottomClamp: -70
