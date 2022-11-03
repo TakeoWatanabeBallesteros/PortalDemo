@@ -16,7 +16,21 @@ public class PortalBehaviour : MonoBehaviour
     [SerializeField] 
     private Transform playerCamera;
     [SerializeField] 
-    private float offsetNearPlane;
+    private Renderer Renderer;
+    [field: SerializeField]
+    public bool IsPlaced { get; private set; } = false;
+
+    private static PortalBehaviour outPortal =  null;
+
+    private void OnEnable()
+    {
+        IsPlaced = true;
+    }
+
+    private void OnDisable()
+    {
+        IsPlaced = false;
+    }
 
     private void Start()
     {
@@ -26,7 +40,7 @@ public class PortalBehaviour : MonoBehaviour
     
     private void Update()
     {
-        
+        Renderer.enabled = mirrorPortal.IsPlaced;
     }
 
     private void LateUpdate()
@@ -58,7 +72,14 @@ public class PortalBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player")) return;
+        if (!other.CompareTag("Player") || outPortal != null) return;
+        outPortal = mirrorPortal;
+        other.gameObject.layer = LayerMask.NameToLayer("Player_Travelling");
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (!other.CompareTag("Player") || outPortal == this) return;
         // Vector3 l_Position =
         //     otherPortalTransform.transform.InverseTransformPoint(transform.position);
         // Vector3 l_Direction =
@@ -79,14 +100,15 @@ public class PortalBehaviour : MonoBehaviour
             other.transform.eulerAngles = Vector3.up * (mirrorPortal.transform.eulerAngles.y -
                 (transform.eulerAngles.y - other.transform.eulerAngles.y) + 180.0f);
             Vector3 CamLEA = playerCamera.localEulerAngles;
-            playerCamera.localEulerAngles =
-                Vector3.right * (mirrorPortal.transform.eulerAngles.x + playerCamera.localEulerAngles.x);
+            playerCamera.localEulerAngles = Vector3.right * (mirrorPortal.transform.eulerAngles.x + playerCamera.localEulerAngles.x);
             
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        
+        if (!other.CompareTag("Player") || outPortal == this) return;
+        outPortal = null;
+        other.gameObject.layer = LayerMask.NameToLayer("Player");
     }
 }

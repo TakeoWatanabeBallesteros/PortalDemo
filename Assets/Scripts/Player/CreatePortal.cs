@@ -12,9 +12,9 @@ public class CreatePortal : MonoBehaviour
     [SerializeField] 
     public InputActionReference orangePortalShoot;
     [SerializeField] 
-    public GameObject bluePortal;
+    public PortalBehaviour bluePortal;
     [SerializeField] 
-    public GameObject orangePortal;
+    public PortalBehaviour orangePortal;
     [SerializeField] 
     private GameObject portal;
     [SerializeField] 
@@ -52,7 +52,7 @@ public class CreatePortal : MonoBehaviour
         {
             if(!IsValidPosition(Camera.main.transform.position, Camera.main.transform.forward, 100, out position, out normal))
                 return;
-            bluePortal.SetActive(true);
+            bluePortal.gameObject.SetActive(true);;
             bluePortal.transform.position = position + bluePortal.transform.forward * 0.01f;
             bluePortal.transform.rotation = Quaternion.LookRotation(normal);
         };
@@ -60,7 +60,7 @@ public class CreatePortal : MonoBehaviour
         {
             if(!IsValidPosition(Camera.main.transform.position, Camera.main.transform.forward, 100, out position, out normal))
                 return;
-            orangePortal.SetActive(true);
+            orangePortal.gameObject.SetActive(true);
             orangePortal.transform.position = position + orangePortal.transform.forward * 0.01f;;
             orangePortal.transform.rotation = Quaternion.LookRotation(normal);
         };
