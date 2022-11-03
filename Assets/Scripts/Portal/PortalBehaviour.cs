@@ -52,22 +52,41 @@ public class PortalBehaviour : MonoBehaviour
         mirrorPortal.portalCamera.transform.localEulerAngles = new Vector3(direction.eulerAngles.x,
                                                                          direction.eulerAngles.y + 180,
                                                                            direction.eulerAngles.z);
-        Vector3 distance = transform.InverseTransformPoint(playerCamera.transform.position);
+        Vector3 distance = transform.InverseTransformPoint(playerCamera.position);
         mirrorPortal.portalCamera.transform.localPosition = -new Vector3(distance.x, -distance.y, distance.z);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
-        Debug.Log("ap");
-        Vector3 l_Position =
-            otherPortalTransform.transform.InverseTransformPoint(transform.position);
-        Vector3 l_Direction =
-            otherPortalTransform.transform.InverseTransformDirection(-transform.forward);
-        playerPosition.position =
-            mirrorPortal.transform.TransformPoint(l_Position);
-        playerPosition.forward =
-            mirrorPortal.transform.TransformDirection(l_Direction);
-        playerPosition.position += playerPosition.forward * 0.3f;
+        // Vector3 l_Position =
+        //     otherPortalTransform.transform.InverseTransformPoint(transform.position);
+        // Vector3 l_Direction =
+        //     otherPortalTransform.transform.InverseTransformDirection(-transform.forward);
+        // playerPosition.position =
+        //     mirrorPortal.transform.TransformPoint(l_Position);
+        // playerPosition.forward =
+        //     mirrorPortal.transform.TransformDirection(l_Direction);
+        // playerPosition.position += playerPosition.forward * 0.3f;
+        Vector3 playerFromPortal = transform.InverseTransformPoint(other.transform.position);
+        if (playerFromPortal.z <= 0.02f)
+        {
+            other.transform.position = mirrorPortal.transform.position + new Vector3(-playerFromPortal.x, 
+                                                                                     +playerFromPortal.y,
+                                                                                     -playerFromPortal.z);
+            
+            Quaternion ttt = Quaternion.Inverse(transform.rotation)*other.transform.rotation;
+            other.transform.eulerAngles = Vector3.up * (mirrorPortal.transform.eulerAngles.y -
+                (transform.eulerAngles.y - other.transform.eulerAngles.y) + 180.0f);
+            Vector3 CamLEA = playerCamera.localEulerAngles;
+            playerCamera.localEulerAngles =
+                Vector3.right * (mirrorPortal.transform.eulerAngles.x + playerCamera.localEulerAngles.x);
+            
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        
     }
 }
