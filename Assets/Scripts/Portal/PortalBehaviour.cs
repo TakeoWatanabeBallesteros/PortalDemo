@@ -31,7 +31,7 @@ public class PortalBehaviour : MonoBehaviour
 
     private void LateUpdate()
     {
-        // Takes the local position of the player from the other portal
+        /*// Takes the local position of the player from the other portal
         // and converts it to local position for my mirror portalCamera
         Vector3 playerWorldPosition = playerCamera.position;
         Vector3 playerLocalPosition = otherPortalTransform.InverseTransformPoint(playerWorldPosition);
@@ -46,7 +46,14 @@ public class PortalBehaviour : MonoBehaviour
         // The camera starts from the wall
         float distance = Vector3.Distance(mirrorPortal.portalCamera.transform.position,
             mirrorPortal.transform.position);
-        mirrorPortal.portalCamera.nearClipPlane = distance + offsetNearPlane;
+        mirrorPortal.portalCamera.nearClipPlane = distance + offsetNearPlane;*/
+        
+        Quaternion direction = Quaternion.Inverse(transform.rotation) * playerCamera.rotation;
+        mirrorPortal.portalCamera.transform.localEulerAngles = new Vector3(direction.eulerAngles.x,
+                                                                         direction.eulerAngles.y + 180,
+                                                                           direction.eulerAngles.z);
+        Vector3 distance = transform.InverseTransformPoint(playerCamera.transform.position);
+        mirrorPortal.portalCamera.transform.localPosition = -new Vector3(distance.x, -distance.y, distance.z);
     }
 
     private void OnTriggerEnter(Collider other)
