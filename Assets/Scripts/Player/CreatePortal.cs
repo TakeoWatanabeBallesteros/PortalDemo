@@ -1,10 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CreatePortal : MonoBehaviour
 {
+    [SerializeField] 
+    public InputActionReference bluePortalShoot;
+    [SerializeField] 
+    public InputActionReference orangePortalShoot;
+    [SerializeField] 
+    public GameObject bluePortal;
+    [SerializeField] 
+    public GameObject orangePortal;
     [SerializeField] 
     private GameObject portal;
     [SerializeField] 
@@ -19,18 +29,46 @@ public class CreatePortal : MonoBehaviour
     private float maxValidDistance;
     [SerializeField] 
     private float minDotAngle;
+    
+    private Vector3 position;
+    private Vector3 normal;
+
+    private void OnEnable()
+    {
+        bluePortalShoot.action.Enable();
+        orangePortalShoot.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        bluePortalShoot.action.Disable();
+        orangePortalShoot.action.Disable();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        bluePortalShoot.action.performed += ctx =>
+        {
+            if(!IsValidPosition(Camera.main.transform.position, Camera.main.transform.forward, 100, out position, out normal))
+                return;
+            bluePortal.SetActive(true);
+            bluePortal.transform.position = position + bluePortal.transform.forward * 0.01f;
+            bluePortal.transform.rotation = Quaternion.LookRotation(normal);
+        };
+        orangePortalShoot.action.performed += ctx =>
+        {
+            if(!IsValidPosition(Camera.main.transform.position, Camera.main.transform.forward, 100, out position, out normal))
+                return;
+            orangePortal.SetActive(true);
+            orangePortal.transform.position = position + orangePortal.transform.forward * 0.01f;;
+            orangePortal.transform.rotation = Quaternion.LookRotation(normal);
+        };
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 position;
-        Vector3 normal; 
-        
         portalImage.SetActive(IsValidPosition(Camera.main.transform.position, Camera.main.transform.forward, 100, out position, out normal));
     }
     
