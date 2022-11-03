@@ -12,6 +12,8 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] 
     private InputActionReference lookInput;
     [SerializeField] 
+    private InputActionReference mouseLock;
+    [SerializeField] 
     private Transform playerHead;
     [SerializeField] 
     private float sensibility;
@@ -22,9 +24,28 @@ public class PlayerLook : MonoBehaviour
 
     private float yaw;
     private float pitch;
+    private bool cameraLocked;
     
     private void OnEnable()
     {
+#if UNITY_EDITOR
+        mouseLock.action.Enable();
+        mouseLock.action.performed += _ =>
+        {
+            cameraLocked = !cameraLocked;
+            if (cameraLocked)
+            {
+                lookInput.action.Disable();
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                lookInput.action.Enable();
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            Cursor.visible = cameraLocked;
+        };
+#endif
         lookInput.action.Enable();
     }
 
@@ -38,6 +59,9 @@ public class PlayerLook : MonoBehaviour
     {
         yaw = 0;
         pitch = 0;
+        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = cameraLocked;
     }
 
     // Update is called once per frame

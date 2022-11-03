@@ -2,9 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
-using UnityEngine.UIElements;
 
 public class PortalBehaviour : MonoBehaviour
 {
@@ -20,16 +17,6 @@ public class PortalBehaviour : MonoBehaviour
     private Transform playerCamera;
     [SerializeField] 
     private float offsetNearPlane;
-
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-        
-    }
 
     private void Start()
     {
@@ -61,5 +48,19 @@ public class PortalBehaviour : MonoBehaviour
             mirrorPortal.transform.position);
         mirrorPortal.portalCamera.nearClipPlane = distance + offsetNearPlane;
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Player")) return;
+        Debug.Log("ap");
+        Vector3 l_Position =
+            otherPortalTransform.transform.InverseTransformPoint(transform.position);
+        Vector3 l_Direction =
+            otherPortalTransform.transform.InverseTransformDirection(-transform.forward);
+        playerPosition.position =
+            mirrorPortal.transform.TransformPoint(l_Position);
+        playerPosition.forward =
+            mirrorPortal.transform.TransformDirection(l_Direction);
+        playerPosition.position += playerPosition.forward * 0.3f;
+    }
 }

@@ -21,7 +21,9 @@ public class PlayerFSM : MonoBehaviour
     [SerializeField] 
     public float runSpeed;
     [SerializeField] 
-    private float gravity;
+    public float gravity;
+    [SerializeField] 
+    public float jumpHeight;
     
     public bool grounded => controller.isGrounded;
     public Vector2 MoveInput => moveInput.action.ReadValue<Vector2>().normalized;
@@ -65,6 +67,8 @@ public class PlayerFSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        fsm.OnLogic();
+        
         // Always keep "pushing it" to maintain contact
         if (controller.isGrounded)  
             verticalVelocity = gravity;
@@ -72,13 +76,7 @@ public class PlayerFSM : MonoBehaviour
         else
             verticalVelocity += gravity * Time.deltaTime;
         
-        if ((collisionFlags & CollisionFlags.Above) != 0)
-        {
-            // Check if works
-            verticalVelocity = 0.0f;
-        }
         
-        fsm.OnLogic();
     }
 
     private void AddStates()
@@ -97,6 +95,7 @@ public class PlayerFSM : MonoBehaviour
         fsm.AddTwoWayTransition("Idle", "Run", t => moveInput.action.ReadValue<Vector2>() != Vector2.zero && runInput.action.ReadValue<float>() > 0);
         fsm.AddTwoWayTransition("Walk", "Run", t => runInput.action.ReadValue<float>() > 0);
         fsm.AddTransitionFromAny(new Transition("", "Jump", t => jumpInput.action.triggered && grounded));
+        fsm.AddTransition("Jump", "Fall", t => verticalVelocity <= 0);
         fsm.AddTransition("Fall", "Land", t => grounded);
     }
 }
