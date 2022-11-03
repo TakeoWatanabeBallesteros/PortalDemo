@@ -14,6 +14,7 @@ public class Run : StateBase
 
     public override void OnEnter()
     {
+        Debug.Log("run");
         base.OnEnter();
     }
 

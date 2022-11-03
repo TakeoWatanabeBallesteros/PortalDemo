@@ -14,6 +14,7 @@ public class Land : StateBase
 
     public override void OnEnter()
     {
+        fsm.RequestStateChange("Idle");
         base.OnEnter();
     }
 

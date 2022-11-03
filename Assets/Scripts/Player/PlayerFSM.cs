@@ -6,35 +6,47 @@ using FSM;
 
 public class PlayerFSM : MonoBehaviour
 {
+    public bool what;
     [Header("Inputs")] 
     [SerializeField] 
-    private InputActionReference moveInput;
+    public InputActionReference moveInput;
     [SerializeField] 
     private InputActionReference jumpInput;
+    [SerializeField] 
+    private InputActionReference runInput;
 
     [Space] 
     [SerializeField] 
-    private float speed;
+    public float walkSpeed;
+    [SerializeField] 
+    public float runSpeed;
     [SerializeField] 
     private float gravity;
     
     public bool grounded => controller.isGrounded;
     public Vector2 MoveInput => moveInput.action.ReadValue<Vector2>().normalized;
+    [HideInInspector]
+    public float currentSpeed;
 
     private StateMachine fsm;
-    private CollisionFlags collisionFlags;
-    private CharacterController controller;
-    private float verticalVelocity;
+    [HideInInspector]
+    public CollisionFlags collisionFlags;
+    [HideInInspector]
+    public CharacterController controller;
+    [HideInInspector]
+    public float verticalVelocity;
     
     private void OnEnable()
     {
         moveInput.action.Enable();
+        runInput.action.Enable();
         jumpInput.action.Enable();
     }
 
     private void OnDisable()
     {
         moveInput.action.Disable();
+        runInput.action.Disable();
         jumpInput.action.Disable();
     }
 
@@ -53,7 +65,6 @@ public class PlayerFSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fsm.OnLogic();
         // Always keep "pushing it" to maintain contact
         if (controller.isGrounded)  
             verticalVelocity = gravity;
@@ -67,19 +78,7 @@ public class PlayerFSM : MonoBehaviour
             verticalVelocity = 0.0f;
         }
         
-        // normalise input direction
-        Vector3 inputDirection = new Vector3(MoveInput.x, 0.0f, MoveInput.y).normalized;
-
-        // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
-        // if there is a move input rotate player when the player is moving
-        if (MoveInput != Vector2.zero)
-        {
-            // move
-            inputDirection = transform.right * MoveInput.x + transform.forward * MoveInput.y;
-        }
-        // move the player
-        collisionFlags =  controller.Move(inputDirection.normalized * (speed * Time.deltaTime) +
-                                           new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
+        fsm.OnLogic();
     }
 
     private void AddStates()
@@ -94,8 +93,10 @@ public class PlayerFSM : MonoBehaviour
 
     private void AddTransitions()
     {
-        fsm.AddTransition(new Transition("Idle", "Walk", t => moveInput.action.triggered));
-        fsm.AddTransition(new Transition("Walk", "Idle", t => moveInput.action.triggered));
+        fsm.AddTwoWayTransition("Idle", "Walk", t => moveInput.action.ReadValue<Vector2>() != Vector2.zero && runInput.action.ReadValue<float>() == 0);
+        fsm.AddTwoWayTransition("Idle", "Run", t => moveInput.action.ReadValue<Vector2>() != Vector2.zero && runInput.action.ReadValue<float>() > 0);
+        fsm.AddTwoWayTransition("Walk", "Run", t => runInput.action.ReadValue<float>() > 0);
         fsm.AddTransitionFromAny(new Transition("", "Jump", t => jumpInput.action.triggered && grounded));
+        fsm.AddTransition("Fall", "Land", t => grounded);
     }
 }

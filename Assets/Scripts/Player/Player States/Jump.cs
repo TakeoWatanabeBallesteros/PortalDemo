@@ -14,6 +14,7 @@ public class Jump : StateBase
 
     public override void OnEnter()
     {
+        fsm.RequestStateChange("Fall");
         base.OnEnter();
     }
 
