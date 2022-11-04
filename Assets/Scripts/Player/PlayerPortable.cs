@@ -15,7 +15,7 @@ public class PlayerPortable : PortalableObject
 
     public override void Warp()
     {
-        Debug.Log("Teleport :)");
+        Debug.Log("Wrap");
         base.Warp();
         cameraMove.ResetTargetRotation();
     }

@@ -60,7 +60,7 @@ public class PortalableObject : MonoBehaviour
     {
         this.inPortal = inPortal;
         this.outPortal = outPortal;
-
+        
         Physics.IgnoreCollision(collider, wallCollider);
 
         cloneObject.SetActive(false);

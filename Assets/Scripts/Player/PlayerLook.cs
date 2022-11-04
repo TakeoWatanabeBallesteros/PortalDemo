@@ -94,5 +94,7 @@ public class PlayerLook : MonoBehaviour
         yaw = direction.eulerAngles.y;
         pitch = direction.eulerAngles.x;
         pitch = ClampAngle(pitch, bottomClamp, topClamp);
+        playerHead.localRotation = Quaternion.Euler(pitch, 0.0f, 0.0f);
+        transform.rotation = Quaternion.Euler(0.0f, yaw, 0.0f);
     }
 }
