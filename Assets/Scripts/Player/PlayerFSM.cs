@@ -75,8 +75,6 @@ public class PlayerFSM : MonoBehaviour
         // Accelerate
         else
             verticalVelocity += gravity * Time.deltaTime;
-        
-        
     }
 
     private void AddStates()

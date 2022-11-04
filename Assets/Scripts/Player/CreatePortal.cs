@@ -32,6 +32,7 @@ public class CreatePortal : MonoBehaviour
     
     private Vector3 position;
     private Vector3 normal;
+    private Collider wallCollider;
 
     private void OnEnable()
     {
@@ -52,8 +53,9 @@ public class CreatePortal : MonoBehaviour
         {
             if(!IsValidPosition(Camera.main.transform.position, Camera.main.transform.forward, 100, out position, out normal))
                 return;
-            bluePortal.gameObject.SetActive(true);;
-            bluePortal.transform.position = position + bluePortal.transform.forward * 0.01f;
+            bluePortal.gameObject.SetActive(true);
+            bluePortal.wallCollider = wallCollider;
+            bluePortal.transform.position = position;
             bluePortal.transform.rotation = Quaternion.LookRotation(normal);
         };
         orangePortalShoot.action.performed += ctx =>
@@ -61,7 +63,8 @@ public class CreatePortal : MonoBehaviour
             if(!IsValidPosition(Camera.main.transform.position, Camera.main.transform.forward, 100, out position, out normal))
                 return;
             orangePortal.gameObject.SetActive(true);
-            orangePortal.transform.position = position + orangePortal.transform.forward * 0.01f;;
+            orangePortal.wallCollider = wallCollider;
+            orangePortal.transform.position = position;
             orangePortal.transform.rotation = Quaternion.LookRotation(normal);
         };
     }
@@ -79,13 +82,14 @@ public class CreatePortal : MonoBehaviour
         normal = Vector3.forward;
         portal.transform.position = position;
         portal.transform.rotation = Quaternion.LookRotation(normal);
-        
+
         if (Physics.Raycast(ray, out var hitInfo, maxDistance, portalLayerMask.value))
         {
             if (hitInfo.collider.CompareTag("DrawableWall"))
             {
                 normal = hitInfo.normal;
                 position = hitInfo.point;
+                wallCollider = hitInfo.collider;
                 portal.transform.position = position;
                 portal.transform.rotation = Quaternion.LookRotation(normal);
                 foreach (var direction in validPoints.Select(point => point.position - startPosition))

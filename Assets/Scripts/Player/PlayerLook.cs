@@ -86,4 +86,13 @@ public class PlayerLook : MonoBehaviour
         if (lfAngle > 360f) lfAngle -= 360f;
         return Mathf.Clamp(lfAngle, lfMin, lfMax);
     }
+
+
+    public void ResetTargetRotation()
+    {
+        Quaternion direction = Quaternion.LookRotation(playerHead.forward, Vector3.up);
+        yaw = direction.eulerAngles.y;
+        pitch = direction.eulerAngles.x;
+        pitch = ClampAngle(pitch, bottomClamp, topClamp);
+    }
 }
