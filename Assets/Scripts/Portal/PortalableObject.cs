@@ -9,13 +9,16 @@ public class PortalableObject : MonoBehaviour
 
     private int inPortalCount = 0;
     
-    private PortalBehaviour inPortal;
+    protected PortalBehaviour inPortal;
     private PortalBehaviour outPortal;
 
     private new Rigidbody rigidbody;
     protected new Collider collider;
 
+    protected Collider wallCollider;
+
     private static readonly Quaternion halfTurn = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+    private CharacterController controller;
 
     protected virtual void Awake()
     {
@@ -23,9 +26,8 @@ public class PortalableObject : MonoBehaviour
         cloneObject.transform.localScale = transform.localScale;
 
         rigidbody = GetComponent<Rigidbody>();
-        collider = GetComponent<Collider>();
-        if (collider == null)
-            collider = GetComponent<CharacterController>();
+        collider = GetComponent<Collider>(); 
+        controller = GetComponent<CharacterController>();
     }
 
     private void LateUpdate()
@@ -60,6 +62,7 @@ public class PortalableObject : MonoBehaviour
     {
         this.inPortal = inPortal;
         this.outPortal = outPortal;
+        this.wallCollider = wallCollider;
         
         Physics.IgnoreCollision(collider, wallCollider);
 
@@ -81,16 +84,18 @@ public class PortalableObject : MonoBehaviour
 
     public virtual void Warp()
     {
-        var inTransform = inPortal.transform;
-        var outTransform = outPortal.transform;
+        var inTransform = inPortal.PortalTransform;
+        var outTransform = outPortal.PortalTransform;
 
+        if(controller != null) controller.enabled = false;
+        
         // Update position of object.
         Vector3 relativePos = inTransform.InverseTransformPoint(transform.position);
-        // if (relativePos.z != 0.0) return;
+        //if (relativePos.z != 0.0) return;
         relativePos = halfTurn * relativePos;
+        // Debug.Log(Vector3.Distance(outTransform.TransformPoint(relativePos), outTransform.position));
+        if(Vector3.Distance(outTransform.TransformPoint(relativePos), outTransform.position) > 2.0f) return;
         transform.position = outTransform.TransformPoint(relativePos);
-        relativePos = outTransform.InverseTransformPoint(transform.position);
-        Debug.Log(relativePos);
 
         // Update rotation of object.
         Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
@@ -104,7 +109,10 @@ public class PortalableObject : MonoBehaviour
             relativeVel = halfTurn * relativeVel;
             rigidbody.velocity = outTransform.TransformDirection(relativeVel);
         }
+        
+        Debug.Log($"TP from { inPortal.name } to {outPortal.name} actual position {transform.position}");
 
+        if(controller != null) controller.enabled = true;
         // Swap portal references.
         (inPortal, outPortal) = (outPortal, inPortal);
     }

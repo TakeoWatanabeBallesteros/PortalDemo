@@ -76,6 +76,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "TP",
+                    "type": "Button",
+                    "id": "8dc87a00-546b-4f67-81f9-cf6a97f2a231",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -296,6 +304,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MouseLock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db603340-18b7-4454-a615-575c229527db",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TP",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

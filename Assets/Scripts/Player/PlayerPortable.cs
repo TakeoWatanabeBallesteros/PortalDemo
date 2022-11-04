@@ -17,5 +17,7 @@ public class PlayerPortable : PortalableObject
     {
         base.Warp();
         cameraMove.ResetTargetRotation();
+        // inPortal.portalObjects.Remove((PortalableObject)this);
+        // ExitPortal(wallCollider);
     }
 }

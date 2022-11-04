@@ -9,15 +9,15 @@ public class PortalBehaviour : MonoBehaviour
     private Camera portalCamera;
     [SerializeField] 
     private PortalBehaviour mirrorPortal;
-    [SerializeField] 
-    private Transform playerPosition;
+    [field:SerializeField] 
+    public Transform PortalTransform { get; private set; }
     [SerializeField] 
     private Transform playerCamera;
     [SerializeField] 
     private Renderer Renderer;
     [field: SerializeField]
     public bool IsPlaced { get; private set; } = false;
-    private List<PortalableObject> portalObjects = new List<PortalableObject>();
+    public List<PortalableObject> portalObjects = new List<PortalableObject>();
     public Collider wallCollider;
 
     private void OnEnable()
@@ -36,8 +36,8 @@ public class PortalBehaviour : MonoBehaviour
         
         for (int i = 0; i < portalObjects.Count; ++i)
         {
-            Vector3 objPos = transform.InverseTransformPoint(portalObjects[i].transform.position);
-            if (objPos.z < 0.0f)
+            Vector3 objPos = PortalTransform.InverseTransformPoint(portalObjects[i].transform.position);
+            if (objPos.z > 0.0f)
             {
                 portalObjects[i].Warp();
             }

@@ -14,6 +14,8 @@ public class PlayerFSM : MonoBehaviour
     private InputActionReference jumpInput;
     [SerializeField] 
     private InputActionReference runInput;
+    [SerializeField] 
+    private InputActionReference tpInput;
 
     [Space] 
     [SerializeField] 
@@ -37,12 +39,21 @@ public class PlayerFSM : MonoBehaviour
     public CharacterController controller;
     [HideInInspector]
     public float verticalVelocity;
-    
+
+    private Vector3 tpPosition;
+
     private void OnEnable()
     {
         moveInput.action.Enable();
         runInput.action.Enable();
         jumpInput.action.Enable();
+#if UNITY_EDITOR
+        tpInput.action.Enable();
+        tpInput.action.performed += _ =>
+        {
+            transform.position = tpPosition;
+        };
+#endif
     }
 
     private void OnDisable()
@@ -55,6 +66,7 @@ public class PlayerFSM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        tpPosition = transform.position;
         fsm = new StateMachine();
         controller = GetComponent<CharacterController>();
         
