@@ -1499,8 +1499,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.07585903, y: 2.501147, z: 0.120839804}
-  m_Center: {x: -0.95, y: 0.0021076198, z: -0.00000029379538}
+  m_Size: {x: 0.07585903, y: 2.5, z: 0.12}
+  m_Center: {x: -0.95, y: 0.0021076198, z: -0.06}
 --- !u!65 &311222262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1512,8 +1512,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.07585903, y: 2.501147, z: 0.120839804}
-  m_Center: {x: 0.94671583, y: 0.0021076198, z: -0.00000029379538}
+  m_Size: {x: 0.07585903, y: 2.5, z: 0.12}
+  m_Center: {x: 0.94671583, y: 0.0021076198, z: -0.06}
 --- !u!65 &311222263
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1525,8 +1525,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9602294, y: 0.06536268, z: 0.120839804}
-  m_Center: {x: -0.010145898, y: 1.22, z: -0.0000000021231517}
+  m_Size: {x: 1.9602294, y: 0.06536268, z: 0.12}
+  m_Center: {x: -0.010145898, y: 1.22, z: -0.06}
 --- !u!65 &311222264
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1538,8 +1538,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9602294, y: 0.06536268, z: 0.120839804}
-  m_Center: {x: -0.010145898, y: -1.227655, z: -0.0000000021231517}
+  m_Size: {x: 1.9602294, y: 0.06536268, z: 0.12}
+  m_Center: {x: -0.010145898, y: -1.227655, z: -0.06}
 --- !u!1 &349445358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1551,7 +1551,7 @@ GameObject:
   - component: {fileID: 349445361}
   - component: {fileID: 349445360}
   - component: {fileID: 349445359}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Orange_Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1569,7 +1569,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7547414, y: 2.2948098, z: 1}
+  m_Size: {x: 1.7547414, y: 2.2948098, z: 2}
   m_Center: {x: -0.00037038326, y: -0.0025298595, z: 0}
 --- !u!114 &349445360
 MonoBehaviour:
@@ -1856,7 +1856,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh74978
+  m_Name: pb_Mesh18616
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2130,7 +2130,8 @@ GameObject:
   - component: {fileID: 712525605}
   - component: {fileID: 712525603}
   - component: {fileID: 712525604}
-  m_Layer: 0
+  - component: {fileID: 712525607}
+  m_Layer: 8
   m_Name: Portal_Texture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4515,6 +4516,20 @@ Transform:
   m_Father: {fileID: 911871004}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &712525607
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712525602}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 611553152}
 --- !u!1 &744968922
 GameObject:
   m_ObjectHideFlags: 0
@@ -5688,7 +5703,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851659412}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.001}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 349445361}
@@ -5918,7 +5933,7 @@ GameObject:
   - component: {fileID: 911871004}
   - component: {fileID: 911871003}
   - component: {fileID: 911871005}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Blue_Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5973,7 +5988,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7547414, y: 2.2948098, z: 1}
+  m_Size: {x: 1.7547414, y: 2.2948098, z: 2}
   m_Center: {x: -0.00037038326, y: -0.0025298595, z: 0}
 --- !u!1 &956961028
 GameObject:
@@ -6447,7 +6462,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-98942
+  m_Name: pb_Mesh18754
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9731,8 +9746,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9602294, y: 0.06536268, z: 0.120839804}
-  m_Center: {x: -0.010145898, y: -1.227655, z: -0.0000000021231517}
+  m_Size: {x: 1.9602294, y: 0.06536268, z: 0.12}
+  m_Center: {x: -0.010145898, y: -1.227655, z: -0.06}
 --- !u!65 &1712529473
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9744,8 +9759,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.07585903, y: 2.501147, z: 0.120839804}
-  m_Center: {x: -0.95, y: 0.0021076198, z: -0.00000029379538}
+  m_Size: {x: 0.07585903, y: 2.501147, z: 0.12}
+  m_Center: {x: -0.95, y: 0.0021076198, z: -0.06}
 --- !u!65 &1712529474
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9757,8 +9772,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.07585903, y: 2.501147, z: 0.120839804}
-  m_Center: {x: 0.94671583, y: 0.0021076198, z: -0.00000029379538}
+  m_Size: {x: 0.07585903, y: 2.501147, z: 0.12}
+  m_Center: {x: 0.94671583, y: 0.0021076198, z: -0.06}
 --- !u!65 &1712529475
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9770,8 +9785,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9602294, y: 0.06536268, z: 0.120839804}
-  m_Center: {x: -0.010145898, y: 1.22, z: -0.0000000021231517}
+  m_Size: {x: 1.9602294, y: 0.06536268, z: 0.12}
+  m_Center: {x: -0.010145898, y: 1.22, z: -0.06}
 --- !u!1 &1854493685
 GameObject:
   m_ObjectHideFlags: 0
@@ -9890,7 +9905,8 @@ GameObject:
   - component: {fileID: 1863029549}
   - component: {fileID: 1863029547}
   - component: {fileID: 1863029548}
-  m_Layer: 0
+  - component: {fileID: 1863029551}
+  m_Layer: 8
   m_Name: Portal_Texture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12275,6 +12291,20 @@ Transform:
   m_Father: {fileID: 349445361}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1863029551
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863029546}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1250799083}
 --- !u!1 &2110885224
 GameObject:
   m_ObjectHideFlags: 0
@@ -12366,7 +12396,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111419334}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.001}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 911871004}
