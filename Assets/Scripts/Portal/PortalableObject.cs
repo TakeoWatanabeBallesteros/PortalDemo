@@ -66,6 +66,8 @@ public class PortalableObject : MonoBehaviour
         cloneObject.SetActive(false);
 
         ++inPortalCount;
+        
+        Debug.Log("Enter");
     }
 
     public void ExitPortal(Collider wallCollider)
@@ -77,6 +79,8 @@ public class PortalableObject : MonoBehaviour
         {
             cloneObject.SetActive(false);
         }
+        
+        Debug.Log("Exit");
     }
 
     public virtual void Warp()
@@ -85,7 +89,8 @@ public class PortalableObject : MonoBehaviour
         var outTransform = outPortal.transform;
 
         // Update position of object.
-        Vector3 relativePos = inTransform.InverseTransformPoint(transform.position);    
+        Vector3 relativePos = inTransform.InverseTransformPoint(transform.position);
+        if (relativePos.z == 0.0) return;
         relativePos = halfTurn * relativePos;
         transform.position = outTransform.TransformPoint(relativePos);
 
