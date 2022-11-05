@@ -2549,12 +2549,12 @@ GameObject:
   - component: {fileID: 54089449008270882}
   - component: {fileID: 65803225901186192}
   m_Layer: 0
-  m_Name: Companion
+  m_Name: Companion_Dummy
   m_TagString: Cube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4389748191052850
 Transform:
   m_ObjectHideFlags: 0

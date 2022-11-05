@@ -14,6 +14,8 @@ public class Fall : StateBase
 
     public override void OnEnter()
     {
+
+        playerFsm.verticalVelocity += 0;
         base.OnEnter();
     }
 

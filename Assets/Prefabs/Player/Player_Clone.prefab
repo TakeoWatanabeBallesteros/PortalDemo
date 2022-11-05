@@ -106,8 +106,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3426219120632234718}
-  - component: {fileID: 3426219120632234719}
-  - component: {fileID: 3426219120632234712}
   m_Layer: 0
   m_Name: Player_Camera
   m_TagString: MainCamera
@@ -129,57 +127,6 @@ Transform:
   m_Father: {fileID: 3426219120125704448}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &3426219120632234719
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3426219120632234713}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.01
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 319
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!81 &3426219120632234712
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3426219120632234713}
-  m_Enabled: 1
 --- !u!1 &3426219120674116077
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +136,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3426219120674116076}
-  - component: {fileID: 3426219120674116067}
   m_Layer: 0
   m_Name: Weapon_Camera
   m_TagString: Untagged
@@ -211,49 +157,6 @@ Transform:
   m_Father: {fileID: 3426219120125704448}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &3426219120674116067
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3426219120674116077}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 3
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.01
-  far clip plane: 1000
-  field of view: 80
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 64
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
 --- !u!1 &3426219120701499189
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +247,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3426219120713956068}
-  - component: {fileID: 3426219120713955995}
   m_Layer: 6
   m_Name: Weapons_Holder
   m_TagString: Untagged
@@ -367,21 +269,6 @@ Transform:
   m_Father: {fileID: 3426219120125704448}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3426219120713955995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3426219120713956069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf3d89182ff29944896d0f353e6e0599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lookInput: {fileID: -157715672235557779, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
-  speed: 8
-  sensitivityMultiplier: 4
 --- !u!1 &3426219121439188659
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +278,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3426219121439188658}
-  - component: {fileID: 3426219121439188657}
   m_Layer: 6
   m_Name: Portal_Weapon
   m_TagString: Untagged
@@ -414,39 +300,6 @@ Transform:
   m_Father: {fileID: 3426219120713956068}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3426219121439188657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3426219121439188659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2536466708eaafb44952915225eeb52e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bluePortalShoot: {fileID: -1967586286439442731, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
-  orangePortalShoot: {fileID: -7468275522041264462, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
-  bluePortal: {fileID: 0}
-  orangePortal: {fileID: 0}
-  portal: {fileID: 0}
-  portalImage: {fileID: 0}
-  validPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  portalLayerMask:
-    serializedVersion: 2
-    m_Bits: 311
-  minValidDistance: 1
-  maxValidDistance: 1.4
-  minDotAngle: 0.96
 --- !u!1 &8624635123343641932
 GameObject:
   m_ObjectHideFlags: 0

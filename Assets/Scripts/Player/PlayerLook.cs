@@ -25,6 +25,7 @@ public class PlayerLook : MonoBehaviour
     private float yaw;
     private float pitch;
     private bool cameraLocked;
+    private Quaternion direction;
     
     private void OnEnable()
     {
@@ -75,9 +76,13 @@ public class PlayerLook : MonoBehaviour
         Vector2 input = lookInput.action.ReadValue<Vector2>();
         yaw += input.x * sensibility * Time.deltaTime;
         pitch -= input.y * sensibility * Time.deltaTime;
+        if(pitch > 180.0f)
+        {
+            pitch -= 360.0f;
+        }
         pitch = ClampAngle(pitch, bottomClamp, topClamp);
-        playerHead.localRotation = Quaternion.Euler(pitch, 0.0f, 0.0f);
-        transform.rotation = Quaternion.Euler(0.0f, yaw, 0.0f);
+        playerHead.localRotation = Quaternion.Slerp(playerHead.localRotation, Quaternion.Euler(pitch, 0.0f, 0.0f), Time.deltaTime * 15.0f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0.0f, yaw, 0.0f), Time.deltaTime * 15.0f);
     }
     
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
@@ -90,11 +95,11 @@ public class PlayerLook : MonoBehaviour
 
     public void ResetTargetRotation()
     {
-        Quaternion direction = Quaternion.LookRotation(playerHead.forward, Vector3.up);
+        direction = Quaternion.LookRotation(playerHead.forward, Vector3.up);
         yaw = direction.eulerAngles.y;
         pitch = direction.eulerAngles.x;
-        pitch = ClampAngle(pitch, bottomClamp, topClamp);
-        playerHead.localRotation = Quaternion.Euler(pitch, 0.0f, 0.0f);
-        transform.rotation = Quaternion.Euler(0.0f, yaw, 0.0f);
+        // pitch = ClampAngle(pitch, bottomClamp, topClamp);
+        // playerHead.localRotation = Quaternion.Euler(pitch, 0.0f, 0.0f);
+        // transform.rotation = Quaternion.Euler(0.0f, yaw, 0.0f);
     }
 }

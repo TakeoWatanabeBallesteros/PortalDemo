@@ -101,18 +101,10 @@ public class PortalableObject : MonoBehaviour
         Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
         relativeRot = halfTurn * relativeRot;
         transform.rotation = outTransform.rotation * relativeRot;
-
-        // Update velocity of rigidbody.
-        if(rigidbody != null)
-        {
-            Vector3 relativeVel = inTransform.InverseTransformDirection(rigidbody.velocity);
-            relativeVel = halfTurn * relativeVel;
-            rigidbody.velocity = outTransform.TransformDirection(relativeVel);
-        }
-        
-        Debug.Log($"TP from { inPortal.name } to {outPortal.name} actual position {transform.position}");
-
+    
         if(controller != null) controller.enabled = true;
+        
+        
         // Swap portal references.
         (inPortal, outPortal) = (outPortal, inPortal);
     }

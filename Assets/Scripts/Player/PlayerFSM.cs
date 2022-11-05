@@ -104,8 +104,8 @@ public class PlayerFSM : MonoBehaviour
         fsm.AddTwoWayTransition("Idle", "Walk", t => moveInput.action.ReadValue<Vector2>() != Vector2.zero && runInput.action.ReadValue<float>() == 0);
         fsm.AddTwoWayTransition("Idle", "Run", t => moveInput.action.ReadValue<Vector2>() != Vector2.zero && runInput.action.ReadValue<float>() > 0);
         fsm.AddTwoWayTransition("Walk", "Run", t => runInput.action.ReadValue<float>() > 0);
-        fsm.AddTransitionFromAny(new Transition("", "Jump", t => jumpInput.action.triggered && grounded));
-        fsm.AddTransition("Jump", "Fall", t => verticalVelocity <= 0);
         fsm.AddTransition("Fall", "Land", t => grounded);
+        fsm.AddTransitionFromAny(new Transition("", "Jump", t => jumpInput.action.triggered && grounded));
+        fsm.AddTransitionFromAny(new Transition("", "Fall", t => verticalVelocity <= 0 && !grounded));
     }
 }
