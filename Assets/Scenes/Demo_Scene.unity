@@ -5923,6 +5923,7 @@ Transform:
   - {fileID: 37136645}
   - {fileID: 263698999}
   - {fileID: 152523071}
+  - {fileID: 1423733742}
   m_Father: {fileID: 827085784}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6476,6 +6477,7 @@ GameObject:
   - component: {fileID: 827085788}
   - component: {fileID: 827085789}
   - component: {fileID: 827085785}
+  - component: {fileID: 827085790}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -6619,6 +6621,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cloneObject: {fileID: 3426219120307566605, guid: 743a7199f78ea84439d01e34e80b859e, type: 3}
+--- !u!114 &827085790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827085782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b58854295a01a2e42be140f287570955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactAction: {fileID: 715019269035726934, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
+  pickableObjectPoint: {fileID: 1423733742}
+  cameraPosition: {fileID: 744968923}
+  pickUpDistance: 2
+  pickUpLayerMask:
+    serializedVersion: 2
+    m_Bits: 375
 --- !u!1 &848394846
 GameObject:
   m_ObjectHideFlags: 0
@@ -8694,8 +8715,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 54089449008270882, guid: 9eddf26057390cb40a4f054ef935c559, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9eddf26057390cb40a4f054ef935c559, type: 3}
+--- !u!1 &1423733741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1423733742}
+  m_Layer: 0
+  m_Name: PickableObjects_Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1423733742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423733741}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.003, y: -0.35, z: 1.493}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 744968923}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1455267130
 GameObject:
   m_ObjectHideFlags: 0

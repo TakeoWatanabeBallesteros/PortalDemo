@@ -23,7 +23,7 @@
                 },
                 {
                     "name": "Interact",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "0ed934b6-561e-48cb-a120-77501fb43610",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -81,6 +81,14 @@
                     "name": "TP",
                     "type": "Button",
                     "id": "8dc87a00-546b-4f67-81f9-cf6a97f2a231",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "1290ecef-a909-4a79-9e06-2b9266800dad",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -315,6 +323,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "TP",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0ea6711a-5c7f-43a7-87db-eea06501a39b",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

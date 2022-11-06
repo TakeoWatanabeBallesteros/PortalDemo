@@ -88,12 +88,11 @@ public class PortalableObject : MonoBehaviour
         var outTransform = outPortal.PortalTransform;
 
         if(controller != null) controller.enabled = false;
+        if (rigidbody != null) rigidbody.isKinematic = true;
         
         // Update position of object.
         Vector3 relativePos = inTransform.InverseTransformPoint(transform.position);
-        //if (relativePos.z != 0.0) return;
         relativePos = halfTurn * relativePos;
-        // Debug.Log(Vector3.Distance(outTransform.TransformPoint(relativePos), outTransform.position));
         if(Vector3.Distance(outTransform.TransformPoint(relativePos), outTransform.position) > 2.0f) return;
         transform.position = outTransform.TransformPoint(relativePos);
 
@@ -103,7 +102,7 @@ public class PortalableObject : MonoBehaviour
         transform.rotation = outTransform.rotation * relativeRot;
     
         if(controller != null) controller.enabled = true;
-        
+        if (rigidbody != null) rigidbody.isKinematic = false;
         
         // Swap portal references.
         (inPortal, outPortal) = (outPortal, inPortal);
