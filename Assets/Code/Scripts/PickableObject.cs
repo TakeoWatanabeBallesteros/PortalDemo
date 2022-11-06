@@ -18,7 +18,8 @@ public class PickableObject : MonoBehaviour
         this.pickPoint = pickPoint;
         transform.parent = pickPoint.transform;
         GetComponent<PortalableObject>().enabled = false;
-        rigidBody.useGravity = false;
+        rigidBody.isKinematic = true;
+        // rigidBody.useGravity = false;
         // rigidBody.drag = 10f;
     }
 
@@ -27,14 +28,17 @@ public class PickableObject : MonoBehaviour
         pickPoint = null;
         transform.parent = null;
         GetComponent<PortalableObject>().enabled = true;
-        rigidBody.useGravity = true;
+        rigidBody.isKinematic = false;
+        // rigidBody.useGravity = true;
         // rigidBody.drag = 1f;
     }
     
-    public void FixedUpdate()
+    private void Update()
     {
         if(pickPoint == null) return;
         if(Vector3.Distance(transform.position, pickPoint.position) > 0.1f)
-            rigidBody.MovePosition(Vector3.Lerp(transform.position, pickPoint.position, Time.deltaTime * 10f));
+            transform.position = Vector3.Lerp(transform.position, pickPoint.position, Time.deltaTime * 10f);
+        
+        rigidBody.velocity = Vector3.zero;
     }
 }
