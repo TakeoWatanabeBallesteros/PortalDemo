@@ -54,6 +54,7 @@ public class CreatePortal : MonoBehaviour
             if(!IsValidPosition(Camera.main.transform.position, Camera.main.transform.forward, 100, out position, out normal))
                 return;
             bluePortal.gameObject.SetActive(true);
+            bluePortal.PortalAnimator.SetTrigger("Create");
             bluePortal.wallCollider = wallCollider;
             bluePortal.transform.position = position;
             bluePortal.transform.rotation = Quaternion.LookRotation(normal);
@@ -63,6 +64,7 @@ public class CreatePortal : MonoBehaviour
             if(!IsValidPosition(Camera.main.transform.position, Camera.main.transform.forward, 100, out position, out normal))
                 return;
             orangePortal.gameObject.SetActive(true);
+            orangePortal.PortalAnimator.SetTrigger("Create");
             orangePortal.wallCollider = wallCollider;
             orangePortal.transform.position = position;
             orangePortal.transform.rotation = Quaternion.LookRotation(normal);

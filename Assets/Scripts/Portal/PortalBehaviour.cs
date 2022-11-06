@@ -11,13 +11,15 @@ public class PortalBehaviour : MonoBehaviour
     private PortalBehaviour mirrorPortal;
     [field:SerializeField] 
     public Transform PortalTransform { get; private set; }
+    [field:SerializeField] 
+    public Animator PortalAnimator { get; private set; }
     [SerializeField] 
     private Transform playerCamera;
     [SerializeField] 
     private Renderer Renderer;
     [field: SerializeField]
     public bool IsPlaced { get; private set; } = false;
-    public List<PortalableObject> portalObjects = new List<PortalableObject>();
+    private List<PortalableObject> portalObjects = new List<PortalableObject>();
     public Collider wallCollider;
 
     private void OnEnable()
@@ -29,7 +31,7 @@ public class PortalBehaviour : MonoBehaviour
     {
         IsPlaced = false;
     }
-    
+
     private void Update()
     {
         Renderer.enabled = mirrorPortal.IsPlaced;
