@@ -76,4 +76,9 @@ public class PortalBehaviour : MonoBehaviour
             obj.ExitPortal(wallCollider);
         }
     }
+
+    public bool IsRendererVisible()
+    {
+        return true;
+    }
 }

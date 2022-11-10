@@ -22,6 +22,7 @@ public class PortalableObject : MonoBehaviour
 
     protected virtual void Awake()
     {
+        cloneObject = Instantiate(cloneObject);
         cloneObject.SetActive(false);
         cloneObject.transform.localScale = transform.localScale;
 
@@ -30,6 +31,8 @@ public class PortalableObject : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
+    
+    // TODO: Rotate te cameraHolder on the player clone
     private void LateUpdate()
     {
         if(inPortal == null || outPortal == null)
@@ -66,7 +69,7 @@ public class PortalableObject : MonoBehaviour
         
         Physics.IgnoreCollision(collider, wallCollider);
 
-        cloneObject.SetActive(false);
+        cloneObject.SetActive(true);
 
         ++inPortalCount;
     }
@@ -93,7 +96,6 @@ public class PortalableObject : MonoBehaviour
         // Update position of object.
         Vector3 relativePos = inTransform.InverseTransformPoint(transform.position);
         relativePos = halfTurn * relativePos;
-        if(Vector3.Distance(outTransform.TransformPoint(relativePos), outTransform.position) > 2.0f) return;
         transform.position = outTransform.TransformPoint(relativePos);
 
         // Update rotation of object.

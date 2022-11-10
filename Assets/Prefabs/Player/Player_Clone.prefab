@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3426219120125704448}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Camera_Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,13 +44,13 @@ GameObject:
   - component: {fileID: 3426219120307566595}
   - component: {fileID: -5165049882942690160}
   - component: {fileID: 8928233158012442128}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Player_Clone
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3426219120307566595
 Transform:
   m_ObjectHideFlags: 0
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3426219120632234718}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player_Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3426219120674116076}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Weapon_Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 3426219120701499188}
   - component: {fileID: 3426219120701499177}
   - component: {fileID: 3426219120701499178}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Player_VisualRef
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ Transform:
   m_GameObject: {fileID: 3426219120701499189}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.9, z: 0}
-  m_LocalScale: {x: 0.98642063, y: 0.98642063, z: 0.98642063}
+  m_LocalScale: {x: 0.87564564, y: 0.87564564, z: 0.87564564}
   m_Children: []
   m_Father: {fileID: 3426219120307566595}
   m_RootOrder: 1
@@ -247,7 +247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3426219120713956068}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Weapons_Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3426219121439188658}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Portal_Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 8624635123344003436}
   - component: {fileID: 8624635123346870604}
   - component: {fileID: 8624635123345904524}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: PortalGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
