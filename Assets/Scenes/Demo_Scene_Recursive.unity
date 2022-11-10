@@ -1621,6 +1621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728ecaf71b68a464c9de0af7188aa355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRecursive: 1
   portalCamera: {fileID: 494756005}
   mirrorPortal: {fileID: 911871003}
   <PortalTransform>k__BackingField: {fileID: 1067740253}
@@ -2534,7 +2535,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24416
+  m_Name: pb_Mesh18678
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7075,6 +7076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728ecaf71b68a464c9de0af7188aa355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRecursive: 1
   portalCamera: {fileID: 1854493687}
   mirrorPortal: {fileID: 349445360}
   <PortalTransform>k__BackingField: {fileID: 1033496961}

@@ -6,6 +6,8 @@ using UnityEngine;
 public class PortalBehaviour : MonoBehaviour
 {
     [SerializeField] 
+    private bool isRecursive;
+    [SerializeField] 
     private Camera portalCamera;
     [SerializeField] 
     private PortalBehaviour mirrorPortal;
@@ -38,7 +40,7 @@ public class PortalBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        material = renderer.material;
+        if(isRecursive) material = renderer.material;
     }
 
     private void Update()
@@ -55,15 +57,16 @@ public class PortalBehaviour : MonoBehaviour
         }
     }
 
-    /*private void LateUpdate()
+    private void LateUpdate()
     {
+        if(isRecursive) return;
         Quaternion direction = Quaternion.Inverse(transform.rotation) * playerCamera.rotation;
         mirrorPortal.portalCamera.transform.localEulerAngles = new Vector3(direction.eulerAngles.x,
                                                                          direction.eulerAngles.y + 180,
                                                                            direction.eulerAngles.z);
         Vector3 distance = transform.InverseTransformPoint(playerCamera.position);
         mirrorPortal.portalCamera.transform.localPosition = -new Vector3(distance.x, -distance.y, distance.z);
-    }*/
+    }
 
     private void OnTriggerEnter(Collider other)
     {

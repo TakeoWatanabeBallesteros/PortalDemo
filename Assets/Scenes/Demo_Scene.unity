@@ -249,7 +249,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 319
+    m_Bits: 831
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1587,6 +1587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728ecaf71b68a464c9de0af7188aa355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRecursive: 0
   portalCamera: {fileID: 494756005}
   mirrorPortal: {fileID: 911871003}
   <PortalTransform>k__BackingField: {fileID: 1067740253}
@@ -1595,6 +1596,7 @@ MonoBehaviour:
   Renderer: {fileID: 1863029547}
   <IsPlaced>k__BackingField: 0
   wallCollider: {fileID: 0}
+  renderer: {fileID: 0}
 --- !u!4 &349445361
 Transform:
   m_ObjectHideFlags: 0
@@ -1993,7 +1995,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 511
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 23c3d2da7a0a33149bb984f86ed4b576, type: 2}
   m_TargetDisplay: 0
@@ -2484,7 +2486,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31306
+  m_Name: pb_Mesh21994
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7024,6 +7026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728ecaf71b68a464c9de0af7188aa355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRecursive: 0
   portalCamera: {fileID: 1854493687}
   mirrorPortal: {fileID: 349445360}
   <PortalTransform>k__BackingField: {fileID: 1033496961}
@@ -7032,6 +7035,7 @@ MonoBehaviour:
   Renderer: {fileID: 712525603}
   <IsPlaced>k__BackingField: 0
   wallCollider: {fileID: 0}
+  renderer: {fileID: 0}
 --- !u!4 &911871004
 Transform:
   m_ObjectHideFlags: 0
@@ -8190,7 +8194,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31612
+  m_Name: pb_Mesh22228
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11079,7 +11083,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 511
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 1c153fd68a455ae44be43085b258cd6d, type: 2}
   m_TargetDisplay: 0
