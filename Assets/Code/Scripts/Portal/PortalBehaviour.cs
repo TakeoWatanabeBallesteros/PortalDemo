@@ -71,8 +71,8 @@ public class PortalBehaviour : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var obj = other.GetComponent<PortalableObject>();
-        if (obj != null)
-        {
+        if (obj != null && !portalObjects.Contains(obj))
+        {   
             portalObjects.Add(obj);
             obj.SetIsInPortal(this, mirrorPortal, wallCollider);
         }
@@ -83,7 +83,7 @@ public class PortalBehaviour : MonoBehaviour
         var obj = other.GetComponent<PortalableObject>();
 
         if(portalObjects.Contains(obj))
-        {
+        {   
             portalObjects.Remove(obj);
             obj.ExitPortal(wallCollider);
         }

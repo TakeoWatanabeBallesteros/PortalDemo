@@ -57,7 +57,7 @@ public class RecursivePortalCamera : MonoBehaviour
 
         for(int i = 0; i <= iterationID; ++i)
         {
-            // Position the camera behind the other portal.
+            /*// Position the camera behind the other portal.
             Vector3 relativePos = inTransform.InverseTransformPoint(cameraTransform.position);
             relativePos = Quaternion.Euler(0.0f, 180.0f, 0.0f) * relativePos;
             cameraTransform.position = outTransform.TransformPoint(relativePos);
@@ -65,7 +65,14 @@ public class RecursivePortalCamera : MonoBehaviour
             // Rotate the camera to look through the other portal.
             Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * cameraTransform.rotation;
             relativeRot = Quaternion.Euler(0.0f, 180.0f, 0.0f) * relativeRot;
-            cameraTransform.rotation = outTransform.rotation * relativeRot;
+            cameraTransform.rotation = outTransform.rotation * relativeRot;*/
+            
+            Quaternion direction = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
+            cameraTransform.transform.localEulerAngles = new Vector3(direction.eulerAngles.x,
+                direction.eulerAngles.y + 180,
+                direction.eulerAngles.z);
+            Vector3 distance = transform.InverseTransformPoint(transform.position);
+            cameraTransform.localPosition = -new Vector3(distance.x, -distance.y, distance.z);
         }
 
         // Set the camera's oblique view frustum.
