@@ -21,6 +21,10 @@ public class PortalBehaviour : MonoBehaviour
     public bool IsPlaced { get; private set; } = false;
     private List<PortalableObject> portalObjects = new List<PortalableObject>();
     public Collider wallCollider;
+    
+    private Material material;
+    [SerializeField]
+    private new Renderer renderer;
 
     private void OnEnable()
     {
@@ -30,6 +34,11 @@ public class PortalBehaviour : MonoBehaviour
     private void OnDisable()
     {
         IsPlaced = false;
+    }
+
+    private void Awake()
+    {
+        material = renderer.material;
     }
 
     private void Update()
@@ -46,7 +55,7 @@ public class PortalBehaviour : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    /*private void LateUpdate()
     {
         Quaternion direction = Quaternion.Inverse(transform.rotation) * playerCamera.rotation;
         mirrorPortal.portalCamera.transform.localEulerAngles = new Vector3(direction.eulerAngles.x,
@@ -54,7 +63,7 @@ public class PortalBehaviour : MonoBehaviour
                                                                            direction.eulerAngles.z);
         Vector3 distance = transform.InverseTransformPoint(playerCamera.position);
         mirrorPortal.portalCamera.transform.localPosition = -new Vector3(distance.x, -distance.y, distance.z);
-    }
+    }*/
 
     private void OnTriggerEnter(Collider other)
     {
@@ -76,9 +85,15 @@ public class PortalBehaviour : MonoBehaviour
             obj.ExitPortal(wallCollider);
         }
     }
+    
+    public void SetTexture(RenderTexture tex)
+    {
+        material.mainTexture = tex;
+    }
+
 
     public bool IsRendererVisible()
     {
-        return true;
+        return renderer.isVisible;
     }
 }

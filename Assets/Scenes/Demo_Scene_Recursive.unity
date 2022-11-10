@@ -1596,6 +1596,7 @@ MonoBehaviour:
   Renderer: {fileID: 1863029547}
   <IsPlaced>k__BackingField: 0
   wallCollider: {fileID: 0}
+  renderer: {fileID: 1863029547}
 --- !u!4 &349445361
 Transform:
   m_ObjectHideFlags: 0
@@ -7049,6 +7050,7 @@ MonoBehaviour:
   Renderer: {fileID: 712525603}
   <IsPlaced>k__BackingField: 0
   wallCollider: {fileID: 0}
+  renderer: {fileID: 712525603}
 --- !u!4 &911871004
 Transform:
   m_ObjectHideFlags: 0

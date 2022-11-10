@@ -1,3 +1,5 @@
+using System;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class RecursivePortalCamera : MonoBehaviour
@@ -9,9 +11,23 @@ public class RecursivePortalCamera : MonoBehaviour
 
     [SerializeField]
     private Camera portalCamera;
+    private Camera mainCamera;
 
     private const int iterations = 7;
 
+    private RenderTexture tempTexture;
+
+    private void Awake()
+    {
+        mainCamera = GetComponent<Camera>();
+        
+        tempTexture = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32);
+    }
+
+    private void Start()
+    {
+        // portal.SetTexture(tempTexture);
+    }
 
     private void OnPreRender()
     {
@@ -22,6 +38,7 @@ public class RecursivePortalCamera : MonoBehaviour
 
         if (portal.IsRendererVisible())
         {
+            // portalCamera.targetTexture = tempTexture;
             for (int i = iterations - 1; i >= 0; --i)
             {
                 RenderCamera(portal, mirrorPortal, i);
@@ -31,14 +48,12 @@ public class RecursivePortalCamera : MonoBehaviour
 
     private void RenderCamera(PortalBehaviour inPortal, PortalBehaviour outPortal, int iterationID)
     {
-        Transform inTransform = inPortal.transform;
-        Transform outTransform = outPortal.transform;
-
-        Transform mainCameraTransform = Camera.main.transform;
+        var inTransform = inPortal.PortalTransform;
+        var outTransform = outPortal.PortalTransform;
         
         Transform cameraTransform = portalCamera.transform;
-        cameraTransform.position = mainCameraTransform.position;
-        cameraTransform.rotation = mainCameraTransform.rotation;
+        cameraTransform.position = transform.position;
+        cameraTransform.rotation = transform.rotation;
 
         for(int i = 0; i <= iterationID; ++i)
         {
@@ -54,12 +69,12 @@ public class RecursivePortalCamera : MonoBehaviour
         }
 
         // Set the camera's oblique view frustum.
-        Plane p = new Plane(outTransform.forward, outTransform.position);
+        Plane p = new Plane(-outTransform.forward, outTransform.position);
         Vector4 clipPlane = new Vector4(p.normal.x, p.normal.y, p.normal.z, p.distance);
         Vector4 clipPlaneCameraSpace =
             Matrix4x4.Transpose(Matrix4x4.Inverse(portalCamera.worldToCameraMatrix)) * clipPlane;
 
-        var newMatrix = Camera.main.CalculateObliqueMatrix(clipPlaneCameraSpace);
+        var newMatrix = mainCamera.CalculateObliqueMatrix(clipPlaneCameraSpace);
         portalCamera.projectionMatrix = newMatrix;
 
         // Render the camera to its render target.
