@@ -33,6 +33,7 @@ public class CreatePortal : MonoBehaviour
     private Vector3 position;
     private Vector3 normal;
     private Collider wallCollider;
+    private float PortalsScale;
 
     private int AnimationScaleID;
 
@@ -52,6 +53,7 @@ public class CreatePortal : MonoBehaviour
     void Start()
     {
         AnimationScaleID = Animator.StringToHash("Scale");
+        bluePortal.PortalAnimator.SetFloat(AnimationScaleID, 1.0f);
         bluePortalShoot.action.performed += ctx =>
         {
             if(!IsValidPosition(Camera.main.transform.position, Camera.main.transform.forward, 100, out position, out normal))

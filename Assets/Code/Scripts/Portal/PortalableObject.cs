@@ -54,6 +54,9 @@ public class PortalableObject : MonoBehaviour
             Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
             relativeRot = halfTurn * relativeRot;
             cloneObject.transform.rotation = outTransform.rotation * relativeRot;
+            
+            // Update scale of clone.
+            cloneObject.transform.localScale *= (outTransform.transform.localScale.x / inTransform.transform.localScale.x);
         }
         else
         {
@@ -104,6 +107,9 @@ public class PortalableObject : MonoBehaviour
         Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
         relativeRot = halfTurn * relativeRot;
         transform.rotation = outTransform.rotation * relativeRot;
+        
+        // Update scale of object
+        transform.localScale *= (outTransform.transform.localScale.x / inTransform.transform.localScale.x);
     
         if(controller != null) controller.enabled = true;
         if (rigidbody != null) rigidbody.isKinematic = false;
