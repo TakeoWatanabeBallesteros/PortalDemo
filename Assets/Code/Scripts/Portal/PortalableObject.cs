@@ -13,7 +13,8 @@ public class PortalableObject : MonoBehaviour
     private PortalBehaviour outPortal;
 
     private new Rigidbody rigidbody;
-    protected new Collider collider;
+    [SerializeField]
+    private new Collider collider;
 
     protected Collider wallCollider;
 
@@ -27,7 +28,7 @@ public class PortalableObject : MonoBehaviour
         cloneObject.transform.localScale = transform.localScale;
 
         rigidbody = GetComponent<Rigidbody>();
-        collider = GetComponent<Collider>(); 
+        if(collider == null) collider = GetComponent<Collider>(); 
         controller = GetComponent<CharacterController>();
     }
 
@@ -67,7 +68,8 @@ public class PortalableObject : MonoBehaviour
         this.outPortal = outPortal;
         this.wallCollider = wallCollider;
         
-        Physics.IgnoreCollision(collider, wallCollider);
+        // Physics.IgnoreCollision(collider, wallCollider);
+        Physics.IgnoreLayerCollision(gameObject.layer, wallCollider.gameObject.layer, true);
 
         cloneObject.SetActive(true);
 
@@ -76,7 +78,8 @@ public class PortalableObject : MonoBehaviour
 
     public void ExitPortal(Collider wallCollider)
     {
-        Physics.IgnoreCollision(collider, wallCollider, false);
+        // Physics.IgnoreCollision(collider, wallCollider, false);
+        Physics.IgnoreLayerCollision(gameObject.layer, wallCollider.gameObject.layer, false);
         --inPortalCount;
 
         if (inPortalCount == 0)
