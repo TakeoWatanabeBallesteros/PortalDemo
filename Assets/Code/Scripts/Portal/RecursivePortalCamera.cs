@@ -5,9 +5,7 @@ using UnityEngine;
 public class RecursivePortalCamera : MonoBehaviour
 {
     [SerializeField]
-    private PortalBehaviour portal;
-    [SerializeField] 
-    private PortalBehaviour mirrorPortal;
+    private PortalBehaviour[] portals = new PortalBehaviour[2];
 
     [SerializeField]
     private Camera portalCamera;
@@ -15,33 +13,45 @@ public class RecursivePortalCamera : MonoBehaviour
 
     private const int iterations = 7;
 
-    private RenderTexture tempTexture;
+    private RenderTexture tempTexture1;
+    private RenderTexture tempTexture2;
 
     private void Awake()
     {
         mainCamera = GetComponent<Camera>();
         
-        tempTexture = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32);
+        tempTexture1 = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32);
+        tempTexture2 = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32);
     }
 
     private void Start()
     {
-        // portal.SetTexture(tempTexture);
+        portals[0].SetTexture(tempTexture1);
+        portals[1].SetTexture(tempTexture2);
     }
 
     private void OnPreRender()
     {
-        if (!portal.IsPlaced)
+        if (!portals[0].IsPlaced || !portals[1].IsPlaced)
         {
             return;
         }
 
-        if (portal.IsRendererVisible())
+        if (portals[0].IsRendererVisible())
         {
-            // portalCamera.targetTexture = tempTexture;
+            portalCamera.targetTexture = tempTexture1;
             for (int i = iterations - 1; i >= 0; --i)
             {
-                RenderCamera(portal, mirrorPortal, i);
+                RenderCamera(portals[0], portals[1], i);
+            }
+        }
+
+        if(portals[1].IsRendererVisible())
+        {
+            portalCamera.targetTexture = tempTexture2;
+            for (int i = iterations - 1; i >= 0; --i)
+            {
+                RenderCamera(portals[1], portals[0], i);
             }
         }
     }
@@ -57,7 +67,7 @@ public class RecursivePortalCamera : MonoBehaviour
 
         for(int i = 0; i <= iterationID; ++i)
         {
-            /*// Position the camera behind the other portal.
+            // Position the camera behind the other portal.
             Vector3 relativePos = inTransform.InverseTransformPoint(cameraTransform.position);
             relativePos = Quaternion.Euler(0.0f, 180.0f, 0.0f) * relativePos;
             cameraTransform.position = outTransform.TransformPoint(relativePos);
@@ -65,14 +75,14 @@ public class RecursivePortalCamera : MonoBehaviour
             // Rotate the camera to look through the other portal.
             Quaternion relativeRot = Quaternion.Inverse(inTransform.rotation) * cameraTransform.rotation;
             relativeRot = Quaternion.Euler(0.0f, 180.0f, 0.0f) * relativeRot;
-            cameraTransform.rotation = outTransform.rotation * relativeRot;*/
+            cameraTransform.rotation = outTransform.rotation * relativeRot;
             
-            Quaternion direction = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
+            /*Quaternion direction = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
             cameraTransform.transform.localEulerAngles = new Vector3(direction.eulerAngles.x,
                 direction.eulerAngles.y + 180,
                 direction.eulerAngles.z);
             Vector3 distance = transform.InverseTransformPoint(transform.position);
-            cameraTransform.localPosition = -new Vector3(distance.x, -distance.y, distance.z);
+            cameraTransform.localPosition = -new Vector3(distance.x, -distance.y, distance.z);*/
         }
 
         // Set the camera's oblique view frustum.
