@@ -34,6 +34,8 @@ public class CreatePortal : MonoBehaviour
     private Vector3 normal;
     private Collider wallCollider;
 
+    private int AnimationScaleID;
+
     private void OnEnable()
     {
         bluePortalShoot.action.Enable();
@@ -49,6 +51,7 @@ public class CreatePortal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AnimationScaleID = Animator.StringToHash("Scale");
         bluePortalShoot.action.performed += ctx =>
         {
             if(!IsValidPosition(Camera.main.transform.position, Camera.main.transform.forward, 100, out position, out normal))
@@ -69,6 +72,7 @@ public class CreatePortal : MonoBehaviour
             orangePortal.transform.position = position;
             orangePortal.transform.rotation = Quaternion.LookRotation(normal);
         };
+        
     }
 
     // Update is called once per frame

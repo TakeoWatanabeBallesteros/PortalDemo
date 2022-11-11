@@ -33,7 +33,6 @@ public class PortalableObject : MonoBehaviour
     }
 
     
-    // TODO: Rotate te cameraHolder on the player clone
     protected virtual void LateUpdate()
     {
         if(inPortal == null || outPortal == null)
