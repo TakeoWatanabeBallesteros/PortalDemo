@@ -30,7 +30,7 @@ public class PortalBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
-        IsPlaced = true;
+        if(!isRecursive)IsPlaced = true;
     }
 
     private void OnDisable()
@@ -98,5 +98,15 @@ public class PortalBehaviour : MonoBehaviour
     public bool IsRendererVisible()
     {
         return renderer.isVisible;
+    }
+
+    public void Placing()
+    {
+        IsPlaced = false;
+    }
+
+    public void Place()
+    {
+        IsPlaced = true;
     }
 }

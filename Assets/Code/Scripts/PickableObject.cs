@@ -39,6 +39,6 @@ public class PickableObject : MonoBehaviour
         if(Vector3.Distance(transform.position, pickPoint.position) > 0.1f)
             transform.position = Vector3.Lerp(transform.position, pickPoint.position, Time.deltaTime * 10f);
         
-        rigidBody.velocity = Vector3.zero;
+        // rigidBody.velocity = Vector3.zero;
     }
 }

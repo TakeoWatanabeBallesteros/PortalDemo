@@ -5,7 +5,7 @@ using UnityEngine;
 public class PortalableObject : MonoBehaviour
 {
     [SerializeField]
-    private GameObject cloneObject;
+    protected GameObject cloneObject;
 
     private int inPortalCount = 0;
     
@@ -34,7 +34,7 @@ public class PortalableObject : MonoBehaviour
 
     
     // TODO: Rotate te cameraHolder on the player clone
-    private void LateUpdate()
+    protected virtual void LateUpdate()
     {
         if(inPortal == null || outPortal == null)
         {
@@ -68,7 +68,6 @@ public class PortalableObject : MonoBehaviour
         this.outPortal = outPortal;
         this.wallCollider = wallCollider;
         
-        Debug.Log("Ignore");
         // Physics.IgnoreCollision(collider, wallCollider);
         Physics.IgnoreLayerCollision(gameObject.layer, wallCollider.gameObject.layer, true);
 
@@ -79,7 +78,6 @@ public class PortalableObject : MonoBehaviour
 
     public void ExitPortal(Collider wallCollider)
     {
-        Debug.Log("No Ignore");
         // Physics.IgnoreCollision(collider, wallCollider, false);
         Physics.IgnoreLayerCollision(gameObject.layer, wallCollider.gameObject.layer, false);
         --inPortalCount;
