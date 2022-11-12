@@ -6,18 +6,21 @@ using UnityEngine;
 public class PickableObject : MonoBehaviour
 {
     private Rigidbody rigidBody;
+    private Collider collider;
     private Transform pickPoint;
     
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
+        collider = GetComponent<Collider>();
     }
 
     public void Pick(Transform pickPoint)
     {
         this.pickPoint = pickPoint;
         transform.parent = pickPoint.transform;
-        GetComponent<PortalableObject>().enabled = false;
+        pickPoint.gameObject.AddComponent<Collider>();
+        // GetComponent<PortalableObject>().enabled = false;
         rigidBody.isKinematic = true;
         // rigidBody.useGravity = false;
         // rigidBody.drag = 10f;
@@ -27,7 +30,7 @@ public class PickableObject : MonoBehaviour
     {
         pickPoint = null;
         transform.parent = null;
-        GetComponent<PortalableObject>().enabled = true;
+        // GetComponent<PortalableObject>().enabled = true;
         rigidBody.isKinematic = false;
         // rigidBody.useGravity = true;
         // rigidBody.drag = 1f;

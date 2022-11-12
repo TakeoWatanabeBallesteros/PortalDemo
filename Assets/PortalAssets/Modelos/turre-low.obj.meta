@@ -102,8 +102,8 @@ ModelImporter:
   externalObjects: {}
   materials:
     materialImportMode: 1
-    materialName: 0
-    materialSearch: 1
+    materialName: 2
+    materialSearch: 2
     materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
