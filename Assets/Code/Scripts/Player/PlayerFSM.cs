@@ -79,6 +79,7 @@ public class PlayerFSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        what = grounded;
         fsm.OnLogic();
         
         // Always keep "pushing it" to maintain contact

@@ -7116,6 +7116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookInput: {fileID: -157715672235557779, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
+  zoomInput: {fileID: 0}
   mouseLock: {fileID: -3748050762508437461, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
   playerHead: {fileID: 744968923}
   sensibility: 10
@@ -7148,12 +7149,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactAction: {fileID: 715019269035726934, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
+  throwAction: {fileID: -1967586286439442731, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
   pickableObjectPoint: {fileID: 1423733742}
   cameraPosition: {fileID: 744968923}
   pickUpDistance: 2
   pickUpLayerMask:
     serializedVersion: 2
     m_Bits: 375
+  playerCollider: {fileID: 827085783}
 --- !u!136 &827085791
 CapsuleCollider:
   m_ObjectHideFlags: 0

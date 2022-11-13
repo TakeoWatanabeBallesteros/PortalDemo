@@ -107,6 +107,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2308894102618758259}
   - component: {fileID: 8376865837181660416}
+  - component: {fileID: 4866662617645292216}
+  - component: {fileID: 7948935683205958009}
+  - component: {fileID: 4995995129859640251}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -147,6 +150,47 @@ MonoBehaviour:
     m_Bits: 4294967295
   maxLaserDistance: 250
   alifeAngleInDegrees: 30
+--- !u!114 &4866662617645292216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3116779394562361033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30bd192c23f216a4f942950a2381b4e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &7948935683205958009
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3116779394562361033}
+  serializedVersion: 2
+  m_Mass: 4
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 3
+--- !u!65 &4995995129859640251
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3116779394562361033}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6891566, y: 1.3935707, z: 1.1588764}
+  m_Center: {x: 0.0032605827, y: 0.69855535, z: 0.027855039}
 --- !u!1 &3470726652209354299
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +451,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5770546108424971559}
   - component: {fileID: 6562975290907744348}
-  - component: {fileID: 6842750147065162745}
   m_Layer: 0
   m_Name: turret
   m_TagString: Untagged
@@ -491,20 +534,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000033527613, y: -0.07120383, z: 0.1010921}
     m_Extent: {x: 0.33980387, y: 0.81948626, z: 0.5701904}
   m_DirtyAABB: 0
---- !u!64 &6842750147065162745
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8488115961609359855}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2092836026824628808, guid: 233b067da82205f4397ee8f9a10c42b5, type: 3}
 --- !u!1 &8797925343380793856
 GameObject:
   m_ObjectHideFlags: 0

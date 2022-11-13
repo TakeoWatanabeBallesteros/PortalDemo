@@ -12,6 +12,8 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] 
     private InputActionReference lookInput;
     [SerializeField] 
+    private InputActionReference zoomInput;
+    [SerializeField] 
     private InputActionReference mouseLock;
     [SerializeField] 
     private Transform playerHead;
@@ -83,6 +85,11 @@ public class PlayerLook : MonoBehaviour
         pitch = ClampAngle(pitch, bottomClamp, topClamp);
         playerHead.localRotation = Quaternion.Slerp(playerHead.localRotation, Quaternion.Euler(pitch, 0.0f, 0.0f), Time.deltaTime * 15.0f);
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0.0f, yaw, 0.0f), Time.deltaTime * 15.0f);
+    }
+
+    private void Zoom()
+    {
+        
     }
     
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)

@@ -5,12 +5,16 @@ using UnityEngine;
 
 public class PickableObject : MonoBehaviour
 {
-    private Rigidbody rigidBody;
+    public Rigidbody rigidBody { get; private set; }
     private Transform pickPoint;
+    public Collider _collider { get; private set; }
+
+    private Vector3 fw;
 
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
+        _collider = GetComponent<Collider>();
     }
 
     public void Pick(Transform pickPoint)
@@ -19,6 +23,7 @@ public class PickableObject : MonoBehaviour
         rigidBody.useGravity = false;
         rigidBody.drag = 10f;
         rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
+        fw = pickPoint.InverseTransformDirection(transform.forward);
     }
 
     public void Drop()
@@ -37,5 +42,11 @@ public class PickableObject : MonoBehaviour
             Vector3 direction = (pickPoint.position - transform.position);
             rigidBody.AddForce(direction * 50.0f);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if(pickPoint == null) return;
+        transform.forward =  Vector3.Slerp(transform.forward,pickPoint.forward, Time.deltaTime*7.0f);
     }
 }
