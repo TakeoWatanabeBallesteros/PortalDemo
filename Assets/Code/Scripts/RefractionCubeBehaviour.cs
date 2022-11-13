@@ -11,8 +11,8 @@ public class RefractionCubeBehaviour : MonoBehaviour
     private LayerMask layerMask;
     [SerializeField]
     private float maxLaserDistance;
-    [SerializeField]
-    private float alifeAngleInDegrees = 30.0f;
+    /*[SerializeField]
+    private float aliveAngleInDegrees = 30.0f;*/
 
     private bool refractionEnabled = false;
 

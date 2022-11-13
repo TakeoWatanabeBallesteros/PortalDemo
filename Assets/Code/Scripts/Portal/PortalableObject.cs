@@ -13,6 +13,7 @@ public class PortalableObject : MonoBehaviour
     private PortalBehaviour outPortal;
 
     private new Rigidbody rigidbody;
+    
     [SerializeField]
     private new Collider collider;
 
