@@ -39,7 +39,6 @@ public class PickUpDrop : MonoBehaviour
     void Start()
     {
         interactAction.action.performed += Pick;
-        throwAction.action.performed += Throw;
     }
 
     private void Pick(InputAction.CallbackContext context)
@@ -51,22 +50,23 @@ public class PickUpDrop : MonoBehaviour
             if (!raycastHit.transform.TryGetComponent(out pickableObject)) return;
             pickableObject.Pick(pickableObjectPoint);
             Physics.IgnoreCollision(playerCollider, pickableObject._collider, true);
+            throwAction.action.performed += Throw;
         }
         else
         {
             pickableObject.Drop();
             Physics.IgnoreCollision(playerCollider, pickableObject._collider, false);
             pickableObject = null;
+            throwAction.action.performed -= Throw;
         }
     }
 
     private void Throw(InputAction.CallbackContext context)
     {
-        if(pickableObject == null) return;
-        var direction = (pickableObjectPoint.forward * 10) - pickableObject.transform.position;
-        pickableObject.rigidBody.AddForce(direction * 100.0f);
+        pickableObject.rigidBody.AddForce(cameraPosition.forward * 1000.0f);
         pickableObject.Drop();
         Physics.IgnoreCollision(playerCollider, pickableObject._collider, false);
         pickableObject = null;
+        throwAction.action.performed -= Throw;
     }
 }
