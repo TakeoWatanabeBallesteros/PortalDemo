@@ -18,6 +18,10 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] 
     private Transform playerHead;
     [SerializeField] 
+    private Camera camera1;
+    [SerializeField] 
+    private Camera camera2;
+    [SerializeField] 
     private float sensibility;
     [SerializeField] 
     private float bottomClamp;
@@ -28,6 +32,7 @@ public class PlayerLook : MonoBehaviour
     private float pitch;
     private bool cameraLocked;
     private Quaternion direction;
+    private float zoom = 60.0f;
     
     private void OnEnable()
     {
@@ -67,6 +72,8 @@ public class PlayerLook : MonoBehaviour
         
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = cameraLocked;
+
+        zoomInput.action.performed += Zoom;
     }
 
     // Update is called once per frame
@@ -89,9 +96,29 @@ public class PlayerLook : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0.0f, yaw, 0.0f), Time.deltaTime * 15.0f);
     }
 
-    private void Zoom()
+    private void Zoom(InputAction.CallbackContext context)
     {
-        
+        if(context.ReadValue<Vector2>().y == 0) return;
+        if(context.ReadValue<Vector2>().y > 0)
+        {
+            zoom = zoom switch
+            {
+                60f => 45f,
+                45f => 35f,
+                _ => zoom
+            };
+        }
+        else if(context.ReadValue<Vector2>().y < 0)
+        {
+            zoom = zoom switch
+            {
+                45f => 60f,
+                35f => 45f,
+                _ => zoom
+            };
+        }
+        camera1.fieldOfView = zoom;
+        camera2.fieldOfView = zoom + 20;
     }
     
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)

@@ -7150,6 +7150,8 @@ MonoBehaviour:
   zoomInput: {fileID: -4928028233122485438, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
   mouseLock: {fileID: -3748050762508437461, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
   playerHead: {fileID: 744968923}
+  camera1: {fileID: 37136644}
+  camera2: {fileID: 263699000}
   sensibility: 10
   bottomClamp: -80
   topClamp: 80
