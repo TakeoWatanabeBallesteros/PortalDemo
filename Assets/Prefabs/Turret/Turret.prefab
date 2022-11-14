@@ -144,11 +144,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ea36ce9ff060c44b40d220f72c08fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laser: {fileID: 294535337956448690}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  maxLaserDistance: 250
+  laser:
+    <laser>k__BackingField: {fileID: 294535337956448690}
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    maxLaserDistance: 250
   alifeAngleInDegrees: 30
 --- !u!114 &4866662617645292216
 MonoBehaviour:

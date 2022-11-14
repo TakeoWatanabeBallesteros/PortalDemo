@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3107774357203600686}
   m_Layer: 0
   m_Name: CompanionCube
-  m_TagString: Untagged
+  m_TagString: CompanionCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
