@@ -72,7 +72,6 @@ public class PortalableObject : MonoBehaviour
         this.outPortal = outPortal;
         this.wallCollider = wallCollider;
         
-        // Physics.IgnoreCollision(collider, wallCollider);
         Physics.IgnoreLayerCollision(gameObject.layer, wallCollider.gameObject.layer, true);
 
         cloneObject.SetActive(true);
@@ -82,7 +81,6 @@ public class PortalableObject : MonoBehaviour
 
     public void ExitPortal(Collider wallCollider)
     {
-        // Physics.IgnoreCollision(collider, wallCollider, false);
         Physics.IgnoreLayerCollision(gameObject.layer, wallCollider.gameObject.layer, false);
         --inPortalCount;
 
@@ -98,7 +96,13 @@ public class PortalableObject : MonoBehaviour
         var outTransform = outPortal.PortalTransform;
 
         if(controller != null) controller.enabled = false;
-        if (rigidbody != null) rigidbody.isKinematic = true;
+        Vector3 relativeVel = Vector3.zero;
+        if (rigidbody != null)
+        {
+            
+            relativeVel = inTransform.InverseTransformDirection(rigidbody.velocity);
+            rigidbody.isKinematic = true;
+        }
         
         // Update position of object.
         Vector3 relativePos = inTransform.InverseTransformPoint(transform.position);
@@ -115,7 +119,13 @@ public class PortalableObject : MonoBehaviour
             transform.localScale *= (outPortal.scale / inPortal.scale);
     
         if(controller != null) controller.enabled = true;
-        if (rigidbody != null) rigidbody.isKinematic = false;
+        if (rigidbody != null)
+        {
+            rigidbody.isKinematic = false;
+            // Update velocity of rigidbody.
+            relativeVel = halfTurn * relativeVel;
+            rigidbody.velocity = outTransform.TransformDirection(relativeVel);
+        }
         
         // Swap portal references.
         (inPortal, outPortal) = (outPortal, inPortal);
