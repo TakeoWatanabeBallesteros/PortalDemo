@@ -7,6 +7,8 @@ using UnityEngine.Events;
 public class DoorButtonBehaviour : MonoBehaviour
 {
     [SerializeField] 
+    private Animator animator;
+    [SerializeField] 
     private UnityEvent active;
     [SerializeField] 
     private UnityEvent notActive;
@@ -17,7 +19,11 @@ public class DoorButtonBehaviour : MonoBehaviour
         if (collision.gameObject.CompareTag("CompanionCube") || collision.gameObject.CompareTag("Player"))
         {
             objectsOnTop++;
-            if(objectsOnTop == 1)active?.Invoke();
+            if(objectsOnTop == 1)
+            {
+                animator.SetTrigger("active");
+                active?.Invoke();
+            }
         }
     }
 
@@ -26,7 +32,11 @@ public class DoorButtonBehaviour : MonoBehaviour
         if (collision.gameObject.CompareTag("CompanionCube") || collision.gameObject.CompareTag("Player"))
         {
             objectsOnTop--;
-            if(objectsOnTop == 0) notActive?.Invoke();
+            if(objectsOnTop == 0)
+            {
+                animator.SetTrigger("notActive");
+                notActive?.Invoke();
+            }
         }
     }
 }

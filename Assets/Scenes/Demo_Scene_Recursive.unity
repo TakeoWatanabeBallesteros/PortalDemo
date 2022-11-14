@@ -7911,6 +7911,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 24081567091475525, guid: 0cfa372be3627554e878d840684ef49a, type: 3}
   m_PrefabInstance: {fileID: 1272590743}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1025193286 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1025193286, guid: ac436c70b0c8d02449fddf25c0ba6716, type: 3}
+  m_PrefabInstance: {fileID: 9149867081159906826}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13c6ed2f8b6a8943b66f86ae79291a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1026994294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8050,29 +8061,6 @@ Transform:
   m_Father: {fileID: 349445361}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
---- !u!1 &1092854365 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7977904800356187443, guid: 8db031f6e349e344da2973d4b9a5ebf2, type: 3}
-  m_PrefabInstance: {fileID: 7261429618958654324}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1092854366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1092854365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14f9e56b80af13d42a6b65119007c1b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  active:
-    m_PersistentCalls:
-      m_Calls: []
-  notActive:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!43 &1112841272
 Mesh:
   m_ObjectHideFlags: 0
@@ -17908,6 +17896,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1092854366, guid: 8db031f6e349e344da2973d4b9a5ebf2, type: 3}
+      propertyPath: active.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1025193286}
+    - target: {fileID: 1092854366, guid: 8db031f6e349e344da2973d4b9a5ebf2, type: 3}
+      propertyPath: notActive.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1025193286}
     - target: {fileID: 7977904800356016403, guid: 8db031f6e349e344da2973d4b9a5ebf2, type: 3}
       propertyPath: m_RootOrder
       value: 6
