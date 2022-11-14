@@ -36,13 +36,13 @@ public class DropCubes : MonoBehaviour
         if ((Vector3.Distance(player.position, button.position) > 1.1f ||
              !(Vector3.Dot(player.forward.normalized, (button.position - player.position).normalized) > .99f)) && _enabled)
         {
+            if(!canSpawn) return;
             interactAction.action.performed -= Spawn;
             _enabled = false;
         }
         else if(!(Vector3.Distance(player.position, button.position) > 1.1f ||
                   !(Vector3.Dot(player.forward.normalized, (button.position - player.position).normalized) > .99f)) && !_enabled)
         {
-            if(!canSpawn) return;
             interactAction.action.performed += Spawn;
             _enabled = true;
         }

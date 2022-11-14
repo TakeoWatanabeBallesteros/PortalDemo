@@ -234,6 +234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5692241587336368960}
+  - component: {fileID: 7792556665839154823}
   m_Layer: 0
   m_Name: Laser_Emiter
   m_TagString: Untagged
@@ -257,3 +258,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &7792556665839154823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5022981690345359866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4897861af83d7bc489ac4b463f43c49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laser:
+    <laser>k__BackingField: {fileID: 4882826467599568086}
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    maxLaserDistance: 250
