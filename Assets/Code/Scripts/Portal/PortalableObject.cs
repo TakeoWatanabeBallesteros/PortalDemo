@@ -57,7 +57,8 @@ public class PortalableObject : MonoBehaviour
             cloneObject.transform.rotation = outTransform.rotation * relativeRot;
             
             // Update scale of clone.
-            cloneObject.transform.localScale *= (outTransform.transform.localScale.x / inTransform.transform.localScale.x);
+            if(cloneObject.transform.localScale.x * (outPortal.scale / inPortal.scale) <= 2 && cloneObject.transform.localScale.x * (outPortal.scale / inPortal.scale) >= 0.5f)
+                cloneObject.transform.localScale *= (outPortal.scale / inPortal.scale);
         }
         else
         {
@@ -110,7 +111,8 @@ public class PortalableObject : MonoBehaviour
         transform.rotation = outTransform.rotation * relativeRot;
         
         // Update scale of object
-        transform.localScale *= (outTransform.transform.localScale.x / inTransform.transform.localScale.x);
+        if(transform.localScale.x * (outPortal.scale / inPortal.scale) <= 2 && transform.localScale.x * (outPortal.scale / inPortal.scale) >= 0.5f)
+            transform.localScale *= (outPortal.scale / inPortal.scale);
     
         if(controller != null) controller.enabled = true;
         if (rigidbody != null) rigidbody.isKinematic = false;

@@ -346,37 +346,15 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Button With One Modifier",
-                    "id": "cc67eb8f-d006-4e0e-bca8-d1054c476fe0",
-                    "path": "ButtonWithOneModifier",
+                    "name": "",
+                    "id": "53c6a419-ba02-4ed6-a382-f62a5ce6d30c",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "ScalePortal",
-                    "isComposite": true,
+                    "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "button",
-                    "id": "e8fa5bf5-c4bd-468f-a20d-0ed2ceb0d9c4",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ScalePortal",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "modifier",
-                    "id": "2c5e94ca-43ad-4ca1-bfe8-20885bddb1a7",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ScalePortal",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         },

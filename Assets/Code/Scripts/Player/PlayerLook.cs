@@ -50,11 +50,13 @@ public class PlayerLook : MonoBehaviour
         };
 #endif
         lookInput.action.Enable();
+        zoomInput.action.Enable();
     }
 
     private void OnDisable()
     {
         lookInput.action.Disable();
+        zoomInput.action.Disable();
     }
 
     // Start is called before the first frame update

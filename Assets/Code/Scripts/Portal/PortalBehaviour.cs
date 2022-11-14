@@ -28,6 +28,8 @@ public class PortalBehaviour : MonoBehaviour
     [SerializeField]
     private new Renderer renderer;
 
+    public float scale;
+
     private void OnEnable()
     {
         if(!isRecursive)IsPlaced = true;

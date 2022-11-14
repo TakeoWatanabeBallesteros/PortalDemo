@@ -1802,6 +1802,37 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaDirect: 0.5
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
+--- !u!1 &304938867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 304938868}
+  m_Layer: 0
+  m_Name: PreviewImage_Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &304938868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304938867}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2122455113}
+  m_Father: {fileID: 1859714045}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &311222259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1942,6 +1973,7 @@ MonoBehaviour:
   <IsPlaced>k__BackingField: 0
   wallCollider: {fileID: 0}
   renderer: {fileID: 1863029547}
+  scale: 0
 --- !u!4 &349445361
 Transform:
   m_ObjectHideFlags: 0
@@ -2995,7 +3027,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32246
+  m_Name: pb_Mesh37284
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7074,7 +7106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0003c3de9d93a44f8b81d015c6ffeb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  what: 0
   moveInput: {fileID: 8130185064591157487, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
   jumpInput: {fileID: 1481124759659193975, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
   runInput: {fileID: -6424176782126915535, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
@@ -7116,7 +7147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookInput: {fileID: -157715672235557779, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
-  zoomInput: {fileID: 0}
+  zoomInput: {fileID: -4928028233122485438, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
   mouseLock: {fileID: -3748050762508437461, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
   playerHead: {fileID: 744968923}
   sensibility: 10
@@ -7547,6 +7578,7 @@ MonoBehaviour:
   <IsPlaced>k__BackingField: 0
   wallCollider: {fileID: 0}
   renderer: {fileID: 712525603}
+  scale: 0
 --- !u!4 &911871004
 Transform:
   m_ObjectHideFlags: 0
@@ -11446,7 +11478,7 @@ Transform:
   m_LocalPosition: {x: 16.581337, y: 0.508404, z: -4.332584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2122455113}
+  - {fileID: 304938868}
   - {fileID: 1176311507}
   m_Father: {fileID: 1150158939}
   m_RootOrder: 0
@@ -14533,6 +14565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bluePortalShoot: {fileID: -1967586286439442731, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
   orangePortalShoot: {fileID: -7468275522041264462, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
+  changeScaleInput: {fileID: 8362986418800466797, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
   bluePortal: {fileID: 911871003}
   orangePortal: {fileID: 349445360}
   portal: {fileID: 1859714044}
@@ -14825,10 +14858,10 @@ Transform:
   m_GameObject: {fileID: 2122455112}
   m_LocalRotation: {x: -0, y: 0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.863001, y: 1, z: 2.4473004}
+  m_LocalScale: {x: 1.8630011, y: 1, z: 2.4473004}
   m_Children:
   - {fileID: 247069684}
-  m_Father: {fileID: 1859714045}
+  m_Father: {fileID: 304938868}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2122455114

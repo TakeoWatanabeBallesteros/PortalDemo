@@ -6,7 +6,6 @@ using FSM;
 
 public class PlayerFSM : MonoBehaviour
 {
-    public bool what;
     [Header("Inputs")] 
     [SerializeField] 
     public InputActionReference moveInput;
@@ -42,6 +41,9 @@ public class PlayerFSM : MonoBehaviour
 
     private Vector3 tpPosition;
 
+    public static bool canShoot{get; private set;}
+    public static bool canThrow{get; private set;}
+
     private void OnEnable()
     {
         moveInput.action.Enable();
@@ -75,11 +77,13 @@ public class PlayerFSM : MonoBehaviour
         
         fsm.SetStartState("Idle");
         fsm.Init();
+
+        canShoot = true;
+        canThrow = !canShoot;
     }
     // Update is called once per frame
     void Update()
     {
-        what = grounded;
         fsm.OnLogic();
         
         // Always keep "pushing it" to maintain contact
@@ -109,4 +113,6 @@ public class PlayerFSM : MonoBehaviour
         fsm.AddTransitionFromAny(new Transition("", "Jump", t => jumpInput.action.triggered && grounded));
         fsm.AddTransitionFromAny(new Transition("", "Fall", t => verticalVelocity <= 0 && !grounded));
     }
+
+    public static void ChangeShoot() => (canShoot, canThrow) = (canThrow, canShoot);
 }

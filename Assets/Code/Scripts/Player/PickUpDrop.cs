@@ -51,6 +51,7 @@ public class PickUpDrop : MonoBehaviour
             pickableObject.Pick(pickableObjectPoint);
             Physics.IgnoreCollision(playerCollider, pickableObject._collider, true);
             throwAction.action.performed += Throw;
+            PlayerFSM.ChangeShoot();
         }
         else
         {
@@ -58,6 +59,7 @@ public class PickUpDrop : MonoBehaviour
             Physics.IgnoreCollision(playerCollider, pickableObject._collider, false);
             pickableObject = null;
             throwAction.action.performed -= Throw;
+            PlayerFSM.ChangeShoot();
         }
     }
 
@@ -68,5 +70,6 @@ public class PickUpDrop : MonoBehaviour
         Physics.IgnoreCollision(playerCollider, pickableObject._collider, false);
         pickableObject = null;
         throwAction.action.performed -= Throw;
+        PlayerFSM.ChangeShoot();
     }
 }

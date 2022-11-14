@@ -12,6 +12,8 @@ public class CreatePortal : MonoBehaviour
     [SerializeField] 
     public InputActionReference orangePortalShoot;
     [SerializeField] 
+    public InputActionReference changeScaleInput;
+    [SerializeField] 
     public PortalBehaviour bluePortal;
     [SerializeField] 
     public PortalBehaviour orangePortal;
@@ -33,7 +35,7 @@ public class CreatePortal : MonoBehaviour
     private Vector3 position;
     private Vector3 normal;
     private Collider wallCollider;
-    private float PortalsScale;
+    private float PortalsScale = 1.0f;
 
     private int AnimationScaleID;
 
@@ -41,45 +43,31 @@ public class CreatePortal : MonoBehaviour
     {
         bluePortalShoot.action.Enable();
         orangePortalShoot.action.Enable();
+        changeScaleInput.action.Enable();
     }
 
     private void OnDisable()
     {
         bluePortalShoot.action.Disable();
         orangePortalShoot.action.Disable();
+        changeScaleInput.action.Disable();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         AnimationScaleID = Animator.StringToHash("Scale");
-        bluePortal.PortalAnimator.SetFloat(AnimationScaleID, 1.0f);
-        bluePortalShoot.action.performed += ctx =>
-        {
-            if(!IsValidPosition(Camera.main.transform.position, Camera.main.transform.forward, 100, out position, out normal))
-                return;
-            bluePortal.gameObject.SetActive(true);
-            bluePortal.PortalAnimator.SetTrigger("Create");
-            bluePortal.wallCollider = wallCollider;
-            bluePortal.transform.position = position;
-            bluePortal.transform.rotation = Quaternion.LookRotation(normal);
-        };
-        orangePortalShoot.action.performed += ctx =>
-        {
-            if(!IsValidPosition(Camera.main.transform.position, Camera.main.transform.forward, 100, out position, out normal))
-                return;
-            orangePortal.gameObject.SetActive(true);
-            orangePortal.PortalAnimator.SetTrigger("Create");
-            orangePortal.wallCollider = wallCollider;
-            orangePortal.transform.position = position;
-            orangePortal.transform.rotation = Quaternion.LookRotation(normal);
-        };
-        
+        bluePortal.PortalAnimator.SetFloat(AnimationScaleID, PortalsScale);
+        orangePortal.PortalAnimator.SetFloat(AnimationScaleID, PortalsScale);
+        bluePortalShoot.action.performed += ctx => _CreatePortal(ctx, 1);
+        orangePortalShoot.action.performed += ctx => _CreatePortal(ctx, 2);
+        changeScaleInput.action.performed += ScalePortals;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!PlayerFSM.canShoot) return;
         portalImage.SetActive(IsValidPosition(Camera.main.transform.position, Camera.main.transform.forward, 100, out position, out normal));
     }
     
@@ -129,5 +117,45 @@ public class CreatePortal : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void _CreatePortal(InputAction.CallbackContext context, int portal)
+    {
+        if(!IsValidPosition(Camera.main.transform.position, Camera.main.transform.forward, 100, out position, out normal))
+            return;
+        if(!PlayerFSM.canShoot) return;
+        switch (portal)
+        {
+            case 1:
+                bluePortal.gameObject.SetActive(true);
+                bluePortal.PortalAnimator.SetTrigger("Create");
+                bluePortal.wallCollider = wallCollider;
+                bluePortal.transform.position = position;
+                bluePortal.transform.rotation = Quaternion.LookRotation(normal);
+                bluePortal.PortalAnimator.SetFloat(AnimationScaleID, PortalsScale);
+                bluePortal.scale = PortalsScale;
+                break;
+            case 2:
+                orangePortal.gameObject.SetActive(true);
+                orangePortal.PortalAnimator.SetTrigger("Create");
+                orangePortal.wallCollider = wallCollider;
+                orangePortal.transform.position = position;
+                orangePortal.transform.rotation = Quaternion.LookRotation(normal);
+                orangePortal.PortalAnimator.SetFloat(AnimationScaleID, PortalsScale);
+                orangePortal.scale = PortalsScale;
+                break;
+        }
+    }
+
+    private void ScalePortals(InputAction.CallbackContext context)
+    {
+        PortalsScale = PortalsScale switch
+        {
+            0.5f => 1,
+            1 => 2,
+            2 => 0.5f,
+            _ => PortalsScale
+        };
+        portalImage.transform.parent.localScale = new Vector3(PortalsScale, PortalsScale, PortalsScale);
     }
 }
