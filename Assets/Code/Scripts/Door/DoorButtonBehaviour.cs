@@ -14,29 +14,21 @@ public class DoorButtonBehaviour : MonoBehaviour
     private UnityEvent notActive;
     private int objectsOnTop;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("CompanionCube") || collision.gameObject.CompareTag("Player"))
-        {
-            objectsOnTop++;
-            if(objectsOnTop == 1)
-            {
-                animator.SetTrigger("active");
-                active?.Invoke();
-            }
-        }
+        if (!other.gameObject.CompareTag("CompanionCube") && !other.gameObject.CompareTag("Player")) return;
+        objectsOnTop++;
+        if (objectsOnTop != 1) return;
+        animator.SetTrigger("active");
+        active?.Invoke();
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject.CompareTag("CompanionCube") || collision.gameObject.CompareTag("Player"))
-        {
-            objectsOnTop--;
-            if(objectsOnTop == 0)
-            {
-                animator.SetTrigger("notActive");
-                notActive?.Invoke();
-            }
-        }
+        if (!other.gameObject.CompareTag("CompanionCube") && !other.gameObject.CompareTag("Player")) return;
+        objectsOnTop--;
+        if (objectsOnTop != 0) return;
+        animator.SetTrigger("notActive");
+        notActive?.Invoke();
     }
 }
