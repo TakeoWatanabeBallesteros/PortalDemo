@@ -108,8 +108,9 @@ MonoBehaviour:
     <laser>k__BackingField: {fileID: 2372721930737732022}
     layerMask:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 2043
     maxLaserDistance: 250
+    laserLimitCollider_Prefab: {fileID: 849117592196894140, guid: 36d33e2c07e148647abc7c19a17b8f91, type: 3}
 --- !u!1 &4191618499047615172
 GameObject:
   m_ObjectHideFlags: 0

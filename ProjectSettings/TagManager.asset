@@ -8,6 +8,7 @@ TagManager:
   - DrawableWall
   - RefractionCube
   - CompanionCube
+  - Laser
   layers:
   - Default
   - TransparentFX

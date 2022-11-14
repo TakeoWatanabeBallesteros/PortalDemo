@@ -12,6 +12,7 @@ public class RefractionCubeBehaviour : MonoBehaviour
 
     private void Update()
     {
+        if(!refractionEnabled) laser.DestroyCollider();
         laser.laser.enabled = refractionEnabled;
         refractionEnabled = false;
     }
@@ -19,6 +20,7 @@ public class RefractionCubeBehaviour : MonoBehaviour
     public void CreateRefraction()
     {
         if(refractionEnabled) return;
+        laser.CreateCollider();
         refractionEnabled = true;
         laser.UpdateLaser();
     }
