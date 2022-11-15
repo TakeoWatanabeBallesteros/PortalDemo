@@ -77,12 +77,6 @@ public class RecursivePortalCamera : MonoBehaviour
             relativeRot = Quaternion.Euler(0.0f, 180.0f, 0.0f) * relativeRot;
             cameraTransform.rotation = outTransform.rotation * relativeRot;
             
-            /*Quaternion direction = Quaternion.Inverse(inTransform.rotation) * transform.rotation;
-            cameraTransform.transform.localEulerAngles = new Vector3(direction.eulerAngles.x,
-                direction.eulerAngles.y + 180,
-                direction.eulerAngles.z);
-            Vector3 distance = transform.InverseTransformPoint(transform.position);
-            cameraTransform.localPosition = -new Vector3(distance.x, -distance.y, distance.z);*/
         }
 
         // Set the camera's oblique view frustum.
