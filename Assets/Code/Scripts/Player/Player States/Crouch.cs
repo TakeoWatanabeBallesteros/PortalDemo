@@ -14,12 +14,13 @@ public class Crouch : StateBase
 
     public override void OnEnter()
     {
+        playerFsm.crouchPivot.localPosition = Vector3.up*playerFsm.crouchHeight;
         base.OnEnter();
     }
 
     public override void OnLogic()
     {
-        playerFsm.currentSpeed = Mathf.Lerp(playerFsm.currentSpeed, playerFsm.runSpeed, Time.deltaTime * 10);
+        playerFsm.currentSpeed = Mathf.Lerp(playerFsm.currentSpeed, playerFsm.crouchSpeed, Time.deltaTime * 10);
     
         Vector3 inputDirection = playerFsm.transform.right * playerFsm.MoveInput.x + playerFsm.transform.forward * playerFsm.MoveInput.y;
     
@@ -30,6 +31,7 @@ public class Crouch : StateBase
 
     public override void OnExit()
     {
+        playerFsm.crouchPivot.localPosition = Vector3.up*1.4f;
         base.OnExit();
     }
 }

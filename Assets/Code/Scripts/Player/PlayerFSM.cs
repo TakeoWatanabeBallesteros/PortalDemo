@@ -24,9 +24,16 @@ public class PlayerFSM : MonoBehaviour
     [SerializeField] 
     public float runSpeed;
     [SerializeField] 
+    public float crouchSpeed;
+    [SerializeField] 
     public float gravity;
     [SerializeField] 
     public float jumpHeight;
+    [SerializeField] 
+    public float crouchHeight;
+    [Space] 
+    [SerializeField] 
+    public Transform crouchPivot;
     
     public bool grounded => controller.isGrounded;
     public Vector2 MoveInput => moveInput.action.ReadValue<Vector2>().normalized;
@@ -102,7 +109,7 @@ public class PlayerFSM : MonoBehaviour
     {
         fsm.AddState("Idle", new Idle(this));
         fsm.AddState("Walk", new Walk(this));
-        fsm.AddState("Run", new Run(this));
+        fsm.AddState("Crouch", new Crouch(this));
         fsm.AddState("Jump", new Jump(this));
         fsm.AddState("Fall", new Fall(this));
         fsm.AddState("Land", new Land(this));
@@ -110,9 +117,9 @@ public class PlayerFSM : MonoBehaviour
 
     private void AddTransitions()
     {
-        fsm.AddTwoWayTransition("Idle", "Walk", t => moveInput.action.ReadValue<Vector2>() != Vector2.zero && runInput.action.ReadValue<float>() == 0);
-        fsm.AddTwoWayTransition("Idle", "Run", t => moveInput.action.ReadValue<Vector2>() != Vector2.zero && runInput.action.ReadValue<float>() > 0);
-        fsm.AddTwoWayTransition("Walk", "Run", t => runInput.action.ReadValue<float>() > 0);
+        fsm.AddTwoWayTransition("Idle", "Walk", t => moveInput.action.ReadValue<Vector2>() != Vector2.zero && crouchInput.action.ReadValue<float>() == 0);
+        fsm.AddTwoWayTransition("Idle", "Crouch", t => crouchInput.action.ReadValue<float>() > 0);
+        fsm.AddTwoWayTransition("Walk", "Crouch", t => crouchInput.action.ReadValue<float>() > 0);
         fsm.AddTransition("Fall", "Land", t => grounded);
         fsm.AddTransitionFromAny(new Transition("", "Jump", t => jumpInput.action.triggered && grounded));
         fsm.AddTransitionFromAny(new Transition("", "Fall", t => verticalVelocity <= 0 && !grounded));
