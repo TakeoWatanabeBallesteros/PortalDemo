@@ -40,6 +40,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3259316136018563240}
   - component: {fileID: 8393603488655030296}
+  - component: {fileID: 2515758245613653179}
+  - component: {fileID: 4855093913933710581}
+  - component: {fileID: 1183493066960343485}
+  - component: {fileID: 7215036168831746596}
   m_Layer: 0
   m_Name: Dropper_Companion
   m_TagString: Untagged
@@ -77,6 +81,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 759002530754887286}
   cubePrefab: {fileID: 2020715469526580081, guid: 5727315c237957a4b8b20dac17eb6767, type: 3}
+--- !u!65 &2515758245613653179
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2769918749365864978}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.44662762, y: 2.727963, z: 2.4976482}
+  m_Center: {x: -1.0230956, y: -1.1383588, z: -0.0024147034}
+--- !u!65 &4855093913933710581
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2769918749365864978}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.43023062, y: 2.703339, z: 2.4976482}
+  m_Center: {x: 1.0186946, y: -1.1421864, z: -0.0024147034}
+--- !u!65 &1183493066960343485
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2769918749365864978}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.4806032, y: 2.7033393, z: 0.4664898}
+  m_Center: {x: -0.006107807, y: -1.1421865, z: 1.0153027}
+--- !u!65 &7215036168831746596
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2769918749365864978}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.4806032, y: 2.7198937, z: 0.4664898}
+  m_Center: {x: -0.006107807, y: -1.1423937, z: -1.03}
 --- !u!1 &9077643476442379979
 GameObject:
   m_ObjectHideFlags: 0
