@@ -2,68 +2,40 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HeadBobController : MonoBehaviour
 {
-    [SerializeField, Range(0, 0.1f)] 
-    private float amplitude;
-    [SerializeField, Range(0, 30)] 
-    private float frequency;
-    [Space] 
-    [SerializeField] 
-    private Transform _camera;
-    [SerializeField] 
-    private Transform cameraHolder;
+    public float walkingBobbingSpeed = 14f;
+    public float bobbingAmount = 0.05f;
+    public CharacterController controller;
+    public Transform head;
+    public PlayerFSM fsm;
+    public InputActionReference move;
 
-    private float toggleSpeed = 3.0f;
-    private Vector3 startPos;
-    private CharacterController controller;
+    float defaultPosY = 0;
+    float timer = 0;
 
-    private void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
-        controller = GetComponent<CharacterController>();
-        startPos = _camera.localPosition;
+        defaultPosY = head.localPosition.y;
     }
-    
+
+    // Update is called once per frame
     void Update()
     {
-        CheckMotion();
-        _camera.LookAt(FocusTarget());
-    }
-    
-    private void PlayMotion(Vector3 motion){
-        _camera.localPosition += motion; 
-    }
-
-    private void CheckMotion()
-    {
-        float speed = new Vector3(controller.velocity.x, 0, controller.velocity.z).magnitude;
-        ResetPosition();
-        if(speed < toggleSpeed) return;
-        if(!controller.isGrounded) return;
-
-        PlayMotion(FootStepMotion());
-    }
-
-    private Vector3 FootStepMotion()
-    {
-        Vector3 pos = Vector3.zero;
-        pos.y += Mathf.Sin(Time.deltaTime * frequency) * amplitude;
-        pos.x += Mathf.Cos(Time.deltaTime * frequency * 2) * amplitude / 2;
-        return pos;
-    }
-
-    private void ResetPosition()
-    {
-        if(_camera.localPosition == startPos) return;
-        _camera.localPosition = Vector3.Lerp(_camera.localPosition, startPos, 1 * Time.deltaTime);
-    }
-
-    private Vector3 FocusTarget()
-    {
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y + cameraHolder.localPosition.y,
-            transform.position.z);
-        pos += cameraHolder.forward * 15f;
-        return pos;
+        if(move.action.ReadValue<Vector2>().magnitude > 0.1 && fsm.grounded)
+        {
+            //Player is moving
+            timer += Time.deltaTime * walkingBobbingSpeed;
+            head.localPosition = new Vector3(head.localPosition.x, defaultPosY + Mathf.Sin(timer) * bobbingAmount, head.localPosition.z);
+        }
+        else
+        {
+            //Idle
+            timer = 0;
+            head.localPosition = new Vector3(head.localPosition.x, Mathf.Lerp(head.localPosition.y, defaultPosY, Time.deltaTime * walkingBobbingSpeed), head.localPosition.z);
+        }
     }
 }

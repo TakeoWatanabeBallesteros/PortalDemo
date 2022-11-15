@@ -7269,15 +7269,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827085782}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbc64379c88e2ec4fbedffcbeda2d302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 0.01
-  frequency: 19.3
-  _camera: {fileID: 37136645}
-  cameraHolder: {fileID: 744968923}
+  walkingBobbingSpeed: 14
+  bobbingAmount: 0.05
+  controller: {fileID: 827085783}
+  head: {fileID: 744968923}
+  fsm: {fileID: 827085786}
+  move: {fileID: 8130185064591157487, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
 --- !u!114 &827085788
 MonoBehaviour:
   m_ObjectHideFlags: 0
