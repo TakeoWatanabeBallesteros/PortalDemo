@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,7 +16,7 @@ public class LaserReceiverBehaviour : MonoBehaviour
     [SerializeField] 
     private bool triggered;
 
-    [ItemCanBeNull] private List<Collider> others = new List<Collider>();
+    private List<Collider> others = new List<Collider>();
 
     private void OnTriggerEnter(Collider other)
     {
