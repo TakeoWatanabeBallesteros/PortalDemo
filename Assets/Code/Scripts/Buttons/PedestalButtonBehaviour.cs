@@ -13,6 +13,8 @@ public class PedestalButtonBehaviour : MonoBehaviour
     [SerializeField] 
     private InputActionReference interactAction;
     [SerializeField] 
+    private Animator animator;
+    [SerializeField] 
     private UnityEvent interact;
     
     
@@ -31,7 +33,11 @@ public class PedestalButtonBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        interactAction.action.performed += ctx => { if(_enabled) interact.Invoke(); };
+        interactAction.action.performed += ctx =>
+        {
+            if (!_enabled) return;
+            animator.SetTrigger("active");
+            interact.Invoke(); };
     }
 
     // Update is called once per frame

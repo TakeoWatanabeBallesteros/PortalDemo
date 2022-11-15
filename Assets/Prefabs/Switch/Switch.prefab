@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5369774928034657907}
   m_LocalRotation: {x: 0.26809454, y: 0, z: -0, w: 0.9633926}
-  m_LocalPosition: {x: -0, y: 1.1724743, z: 2.5465861e-14}
+  m_LocalPosition: {x: 0, y: 1.172474, z: 2.546586e-14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3996633839135968471}
@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 5874847083431050733}
   - component: {fileID: 4979877129863521051}
   - component: {fileID: 5064323491114219367}
+  - component: {fileID: 5892615121618631976}
   m_Layer: 0
   m_Name: Switch
   m_TagString: Untagged
@@ -123,6 +124,7 @@ MonoBehaviour:
   player: {fileID: 0}
   button: {fileID: 1912901898279360650}
   interactAction: {fileID: 715019269035726934, guid: 072f8763a5198914385a70f7aa12c39a, type: 3}
+  animator: {fileID: 5892615121618631976}
   interact:
     m_PersistentCalls:
       m_Calls:
@@ -138,6 +140,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &5892615121618631976
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6542735094633064279}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0fb5c8ca2d8cc3d40824769531850be8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7329344765310068936
 GameObject:
   m_ObjectHideFlags: 0
