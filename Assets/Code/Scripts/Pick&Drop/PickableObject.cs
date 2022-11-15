@@ -6,7 +6,7 @@ using UnityEngine;
 public class PickableObject : MonoBehaviour
 {
     public Rigidbody rigidBody { get; private set; }
-    private Transform pickPoint;
+    public Transform pickPoint{ get; private set; }
     public Collider _collider { get; private set; }
 
     private Vector3 fw;

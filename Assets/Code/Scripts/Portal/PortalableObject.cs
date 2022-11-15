@@ -6,6 +6,8 @@ public class PortalableObject : MonoBehaviour
 {
     [SerializeField]
     protected GameObject cloneObject;
+    [SerializeField]
+    protected PickableObject pickable;
 
     private int inPortalCount = 0;
     
@@ -92,6 +94,7 @@ public class PortalableObject : MonoBehaviour
 
     public virtual void Warp()
     {
+        if(pickable != null && pickable.pickPoint != null) return;
         var inTransform = inPortal.PortalTransform;
         var outTransform = outPortal.PortalTransform;
 

@@ -139,4 +139,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cloneObject: {fileID: 3076489095196363231, guid: e29152a19fdd00146ab8c58f35b77a2f, type: 3}
+  pickable: {fileID: 5602146723609683331}
   collider: {fileID: 1140695139503139084}

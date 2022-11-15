@@ -7382,6 +7382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cloneObject: {fileID: 3426219120307566605, guid: 743a7199f78ea84439d01e34e80b859e, type: 3}
+  pickable: {fileID: 0}
   collider: {fileID: 827085783}
 --- !u!114 &827085790
 MonoBehaviour:

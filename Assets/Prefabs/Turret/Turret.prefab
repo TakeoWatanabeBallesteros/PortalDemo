@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cloneObject: {fileID: 3116779394562361033, guid: 11534e49b68218e4db4d9fdc91273106, type: 3}
+  pickable: {fileID: 4866662617645292216}
   collider: {fileID: 4995995129859640251}
 --- !u!54 &7948935683205958009
 Rigidbody:
