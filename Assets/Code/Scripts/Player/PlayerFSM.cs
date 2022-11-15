@@ -14,6 +14,8 @@ public class PlayerFSM : MonoBehaviour
     [SerializeField] 
     private InputActionReference runInput;
     [SerializeField] 
+    private InputActionReference crouchInput;
+    [SerializeField] 
     private InputActionReference tpInput;
 
     [Space] 
@@ -49,6 +51,7 @@ public class PlayerFSM : MonoBehaviour
         moveInput.action.Enable();
         runInput.action.Enable();
         jumpInput.action.Enable();
+        crouchInput.action.Enable();
 #if UNITY_EDITOR
         tpInput.action.Enable();
         tpInput.action.performed += _ =>
@@ -63,6 +66,7 @@ public class PlayerFSM : MonoBehaviour
         moveInput.action.Disable();
         runInput.action.Disable();
         jumpInput.action.Disable();
+        crouchInput.action.Disable();
     }
 
     // Start is called before the first frame update
