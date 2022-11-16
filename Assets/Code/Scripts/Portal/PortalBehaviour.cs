@@ -77,24 +77,28 @@ public class PortalBehaviour : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        var obj = other.GetComponent<PortalableObject>();
-        if (obj != null && !portalObjects.Contains(obj))
+        if (other.TryGetComponent<PortalableObject>(out var obj) && !portalObjects.Contains(obj))
         {   
             portalObjects.Add(obj);
             obj.SetIsInPortal(this, mirrorPortal, wallCollider);
-        }else if (other.TryGetComponent<LaserPortable>(out var laser))
+        }
+        else if (other.TryGetComponent<LaserPortable>(out var laser))
         {
-            //laser.SetIsInPortal(this, mirrorPortal, wallCollider);
+            laser.SetIsInPortal(this, mirrorPortal);
         }
     }
 
     protected virtual void OnTriggerExit(Collider other)
     {
-        var obj = other.GetComponent<PortalableObject>();
-
-        if (!portalObjects.Contains(obj)) return;
-        portalObjects.Remove(obj);
-        obj.ExitPortal(wallCollider);
+        if (other.TryGetComponent<PortalableObject>(out var obj) && portalObjects.Contains(obj))
+        {
+            portalObjects.Remove(obj);
+            obj.ExitPortal(wallCollider);
+        } 
+        else if (other.TryGetComponent<LaserPortable>(out var laser))
+        {
+            laser.ExitPortal();
+        }
     }
     
     public void SetTexture(RenderTexture tex)

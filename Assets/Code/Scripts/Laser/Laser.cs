@@ -13,7 +13,11 @@ public class Laser : MonoBehaviour
     [SerializeField]
     private float maxLaserDistance;
     [field:SerializeField]
-    public SphereCollider laserLimitCollider{ get; private set; }
+    public SphereCollider laserLimitCollider { get; private set; }
+    public Vector3 hitPoint { get; private set; }
+    public Vector3 hitAngle { get; private set; }
+
+    public float size = 2;
     public void UpdateLaser()
     {
         Ray ray = new Ray(laser.transform.position, laser.transform.forward);
@@ -21,6 +25,7 @@ public class Laser : MonoBehaviour
         if (Physics.Raycast(ray, out var rayCastHit, maxLaserDistance, layerMask.value))
         {
             laserDistance = Vector3.Distance(laser.transform.position, rayCastHit.point);
+            hitPoint = rayCastHit.point;
             if (rayCastHit.collider.CompareTag("RefractionCube"))
                 rayCastHit.collider.GetComponent<RefractionCubeBehaviour>().CreateRefraction();
         }

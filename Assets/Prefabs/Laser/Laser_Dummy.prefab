@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 1061734224713158242}
   - component: {fileID: 3181135286216923752}
   - component: {fileID: 2315399271792620379}
-  - component: {fileID: -3161772492252005390}
   m_Layer: 2
-  m_Name: Laser
+  m_Name: Laser_Dummy
   m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,17 +179,4 @@ MonoBehaviour:
     m_Bits: 3835
   maxLaserDistance: 250
   <laserLimitCollider>k__BackingField: {fileID: 1061734224713158242}
---- !u!114 &-3161772492252005390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8214698208700775248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1c7c19b9d2a2094e9083c29b61893c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  laserPrefab: {fileID: 8214698208700775248, guid: b561036e6c280394fb7c6ea5fa7def99, type: 3}
-  myLaser: {fileID: 2315399271792620379}
+  size: 2

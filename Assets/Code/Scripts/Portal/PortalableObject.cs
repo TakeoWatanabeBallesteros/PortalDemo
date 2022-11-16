@@ -25,8 +25,6 @@ public class PortalableObject : MonoBehaviour
     private static readonly Quaternion halfTurn = Quaternion.Euler(0.0f, 180.0f, 0.0f);
     private CharacterController controller;
 
-    public bool onHold = false;
-
     protected virtual void Awake()
     {
         cloneObject = Instantiate(cloneObject);
@@ -58,7 +56,8 @@ public class PortalableObject : MonoBehaviour
             cloneObject.transform.rotation = outTransform.rotation * relativeRot;
             
             // Update scale of clone.
-            if(cloneObject.transform.localScale.x * (outPortal.scale / inPortal.scale) <= 2 && cloneObject.transform.localScale.x * (outPortal.scale / inPortal.scale) >= 0.5f)
+            if(cloneObject.transform.localScale.x * (outPortal.scale / inPortal.scale) <= 2 && 
+               cloneObject.transform.localScale.x * (outPortal.scale / inPortal.scale) >= 0.5f) 
                 cloneObject.transform.localScale *= (outPortal.scale / inPortal.scale);
         }
         else
