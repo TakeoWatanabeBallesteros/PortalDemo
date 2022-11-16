@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,8 @@ public class PortalableObject : MonoBehaviour
     protected PickableObject pickable;
 
     private int inPortalCount = 0;
-    
-    protected PortalBehaviour inPortal;
+
+    private PortalBehaviour inPortal;
     private PortalBehaviour outPortal;
 
     private new Rigidbody rigidbody;
@@ -37,13 +38,9 @@ public class PortalableObject : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
-    
     protected virtual void LateUpdate()
     {
-        if(inPortal == null || outPortal == null)
-        {
-            return;
-        }
+        if(inPortal == null || outPortal == null) return;
 
         if(cloneObject.activeSelf && inPortal.IsPlaced && outPortal.IsPlaced)
         {
@@ -66,7 +63,7 @@ public class PortalableObject : MonoBehaviour
         }
         else
         {
-            cloneObject.transform.position = new Vector3(-1000.0f, 1000.0f, -1000.0f);
+            // cloneObject.transform.position = new Vector3(-1000.0f, 1000.0f, -1000.0f);
         }
     }
 
@@ -132,7 +129,6 @@ public class PortalableObject : MonoBehaviour
         }
         
         // Swap portal references.
-        if(onHold) inPortal.ExitPortal(this);
         (inPortal, outPortal) = (outPortal, inPortal);
     }
 }

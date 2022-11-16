@@ -145,13 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ea36ce9ff060c44b40d220f72c08fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laser:
-    <laser>k__BackingField: {fileID: 8785297490890553276}
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 1787
-    maxLaserDistance: 250
-    <laserLimitCollider>k__BackingField: {fileID: 7304551831985922621}
+  laser: {fileID: 5459209134181293828}
   alifeAngleInDegrees: 30
 --- !u!114 &4866662617645292216
 MonoBehaviour:
@@ -548,13 +542,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 28810523973455823, guid: 96fce05d89ce2e4458a4c8335bb3839f, type: 3}
   m_PrefabInstance: {fileID: 7774042634079972447}
   m_PrefabAsset: {fileID: 0}
---- !u!120 &8785297490890553276 stripped
-LineRenderer:
-  m_CorrespondingSourceObject: {fileID: 1299665707524250595, guid: 96fce05d89ce2e4458a4c8335bb3839f, type: 3}
+--- !u!114 &5459209134181293828 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2315399271792620379, guid: 96fce05d89ce2e4458a4c8335bb3839f, type: 3}
   m_PrefabInstance: {fileID: 7774042634079972447}
   m_PrefabAsset: {fileID: 0}
---- !u!135 &7304551831985922621 stripped
-SphereCollider:
-  m_CorrespondingSourceObject: {fileID: 1061734224713158242, guid: 96fce05d89ce2e4458a4c8335bb3839f, type: 3}
-  m_PrefabInstance: {fileID: 7774042634079972447}
-  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f4f1bae42be4fbe80498f65130c1877, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

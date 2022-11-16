@@ -6,7 +6,7 @@ using UnityEngine;
 public class WallLaser : MonoBehaviour
 {
     [SerializeField] 
-    private Laser laser = new Laser();
+    private Laser laser;
 
     private void Update()
     {

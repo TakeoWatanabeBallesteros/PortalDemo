@@ -6,7 +6,7 @@ using UnityEngine;
 public class RefractionCubeBehaviour : MonoBehaviour
 {
     [SerializeField] 
-    private Laser laser = new Laser();
+    private Laser laser;
 
     private bool refractionEnabled = false;
 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1299665707524250595}
   - component: {fileID: 1061734224713158242}
   - component: {fileID: 3181135286216923752}
+  - component: {fileID: 2315399271792620379}
   m_Layer: 2
   m_Name: Laser
   m_TagString: Laser
@@ -160,3 +161,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2315399271792620379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8214698208700775248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f4f1bae42be4fbe80498f65130c1877, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <laser>k__BackingField: {fileID: 1299665707524250595}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 3835
+  maxLaserDistance: 250
+  <laserLimitCollider>k__BackingField: {fileID: 1061734224713158242}

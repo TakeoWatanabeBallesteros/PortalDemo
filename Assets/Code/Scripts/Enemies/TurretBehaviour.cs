@@ -6,7 +6,7 @@ using UnityEngine;
 public class TurretBehaviour : MonoBehaviour
 {
     [SerializeField] 
-    private Laser laser = new Laser();
+    private Laser laser;
     [SerializeField]
     private float alifeAngleInDegrees = 30.0f;
 

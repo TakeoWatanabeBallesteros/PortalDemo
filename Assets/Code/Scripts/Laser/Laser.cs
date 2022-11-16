@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Laser
+public class Laser : MonoBehaviour
 {
     [field:SerializeField] 
     public LineRenderer laser { get; private set; }
