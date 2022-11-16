@@ -1009,7 +1009,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-106096
+  m_Name: pb_Mesh306064
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -22123,6 +22123,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 375
   playerCollider: {fileID: 827085783}
+  pickableObject: {fileID: 0}
 --- !u!136 &827085791
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -29727,7 +29728,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-106106
+  m_Name: pb_Mesh306336
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -31133,7 +31134,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-107668
+  m_Name: pb_Mesh305338
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -49249,7 +49250,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-107658
+  m_Name: pb_Mesh307524
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
