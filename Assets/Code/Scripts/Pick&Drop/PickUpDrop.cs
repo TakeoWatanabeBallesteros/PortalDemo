@@ -21,7 +21,7 @@ public class PickUpDrop : MonoBehaviour
     [SerializeField] 
     private Collider playerCollider;
 
-    private PickableObject pickableObject;
+    public PickableObject pickableObject;
     private PortalableObject portable;
 
     private void OnEnable()
@@ -60,7 +60,7 @@ public class PickUpDrop : MonoBehaviour
             pickableObject.Drop();
             Physics.IgnoreCollision(playerCollider, pickableObject._collider, false);
             pickableObject = null;
-            if(portable != null) portable.onHold = true;
+            if(portable != null) portable.onHold = false;
             portable = null;
             throwAction.action.performed -= Throw;
             PlayerFSM.ChangeShoot();
@@ -73,7 +73,7 @@ public class PickUpDrop : MonoBehaviour
         pickableObject.Drop();
         Physics.IgnoreCollision(playerCollider, pickableObject._collider, false);
         pickableObject = null;
-        if(portable != null) portable.onHold = true;
+        if(portable != null) portable.onHold = false;
         portable = null;
         throwAction.action.performed -= Throw;
         PlayerFSM.ChangeShoot();

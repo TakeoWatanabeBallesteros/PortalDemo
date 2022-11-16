@@ -93,7 +93,11 @@ public class PortalBehaviour : MonoBehaviour
         var obj = other.GetComponent<PortalableObject>();
 
         if(portalObjects.Contains(obj) && !obj.onHold)
-        {   
+        {
+            if (obj.TryGetComponent<PickUpDrop>(out var item))
+            {
+                item.pickableObject.GetComponent<PortalableObject>();
+            }   
             portalObjects.Remove(obj);
             obj.ExitPortal(wallCollider);
         }

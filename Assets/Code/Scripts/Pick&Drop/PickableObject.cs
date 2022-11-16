@@ -40,7 +40,7 @@ public class PickableObject : MonoBehaviour
         if (Vector3.Distance(transform.position, pickPoint.position) > 0.1f)
         {
             Vector3 direction = (pickPoint.position - transform.position);
-            rigidBody.AddForce(direction * 50.0f);
+            rigidBody.AddForce(direction * 100.0f);
         }
     }
 
