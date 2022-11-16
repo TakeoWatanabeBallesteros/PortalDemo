@@ -26,6 +26,8 @@ public class CreatePortal : MonoBehaviour
     [SerializeField] 
     private LayerMask portalLayerMask;
     [SerializeField] 
+    private LayerMask pointsLayerMask;
+    [SerializeField] 
     private float minValidDistance;
     [SerializeField] 
     private float maxValidDistance;
@@ -92,7 +94,7 @@ public class CreatePortal : MonoBehaviour
                 {
                     direction.Normalize();
                     ray = new Ray(startPosition, direction);
-                    if (Physics.Raycast(ray, out var pointHit, maxDistance, portalLayerMask.value))
+                    if (Physics.Raycast(ray, out var pointHit, maxDistance, pointsLayerMask.value))
                     {
                         if (pointHit.collider.CompareTag("DrawableWall"))
                         {

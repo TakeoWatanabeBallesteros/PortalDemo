@@ -88,8 +88,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  objectsOnTop: 0
-  triggered: 0
 --- !u!1 &6211842230853550596
 GameObject:
   m_ObjectHideFlags: 0

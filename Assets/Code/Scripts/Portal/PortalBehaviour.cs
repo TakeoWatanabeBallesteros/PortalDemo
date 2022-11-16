@@ -6,46 +6,51 @@ using UnityEngine;
 public class PortalBehaviour : MonoBehaviour
 {
     [SerializeField] 
-    private bool isRecursive;
+    protected bool isRecursive;
     [SerializeField] 
-    private Camera portalCamera;
+    protected Camera portalCamera;
     [SerializeField] 
-    private PortalBehaviour mirrorPortal;
+    protected PortalBehaviour mirrorPortal;
     [field:SerializeField] 
-    public Transform PortalTransform { get; private set; }
+    public Transform PortalTransform { get; protected set; }
     [field:SerializeField] 
-    public Animator PortalAnimator { get; private set; }
+    public Animator PortalAnimator { get; protected set; }
     [SerializeField] 
-    private Transform playerCamera;
+    protected Transform playerCamera;
     [SerializeField] 
-    private Renderer Renderer;
+    protected Renderer Renderer;
     [field: SerializeField]
-    public bool IsPlaced { get; private set; } = false;
-    private List<PortalableObject> portalObjects = new List<PortalableObject>();
+    public bool IsPlaced { get; protected set; } = false;
+    protected List<PortalableObject> portalObjects = new List<PortalableObject>();
     public Collider wallCollider;
     
-    private Material material;
+    protected Material material;
     [SerializeField]
-    private new Renderer renderer;
+    protected new Renderer renderer;
 
     public float scale;
+    private RenderTexture tempTexture;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         if(!isRecursive)IsPlaced = true;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         IsPlaced = false;
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        if(isRecursive) material = renderer.material;
+        material = renderer.material;
+        if (isRecursive) return;
+        tempTexture = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32);
+        material.mainTexture = tempTexture;
+        portalCamera.targetTexture = tempTexture;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         Renderer.enabled = mirrorPortal.IsPlaced;
         
@@ -54,12 +59,12 @@ public class PortalBehaviour : MonoBehaviour
             Vector3 objPos = PortalTransform.InverseTransformPoint(portalObjects[i].transform.position);
             if (objPos.z > 0.0f)
             {
-                portalObjects[i].Warp();
+                if(!portalObjects[i].onHold)portalObjects[i].Warp();
             }
         }
     }
 
-    private void LateUpdate()
+    protected virtual void LateUpdate()
     {
         if(isRecursive) return;
         Quaternion direction = Quaternion.Inverse(transform.rotation) * playerCamera.rotation;
@@ -70,25 +75,29 @@ public class PortalBehaviour : MonoBehaviour
         mirrorPortal.portalCamera.transform.localPosition = -new Vector3(distance.x, -distance.y, distance.z);
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         var obj = other.GetComponent<PortalableObject>();
         if (obj != null && !portalObjects.Contains(obj))
         {   
             portalObjects.Add(obj);
             obj.SetIsInPortal(this, mirrorPortal, wallCollider);
+        }else if (other.TryGetComponent<LaserPortable>(out var laser))
+        {
+            //laser.SetIsInPortal(this, mirrorPortal, wallCollider);
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
         var obj = other.GetComponent<PortalableObject>();
 
-        if(portalObjects.Contains(obj))
+        if(portalObjects.Contains(obj) && !obj.onHold)
         {   
             portalObjects.Remove(obj);
             obj.ExitPortal(wallCollider);
         }
+        
     }
     
     public void SetTexture(RenderTexture tex)

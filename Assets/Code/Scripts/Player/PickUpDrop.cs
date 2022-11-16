@@ -22,6 +22,7 @@ public class PickUpDrop : MonoBehaviour
     private Collider playerCollider;
 
     private PickableObject pickableObject;
+    private PortalableObject portable;
 
     private void OnEnable()
     {
@@ -49,6 +50,7 @@ public class PickUpDrop : MonoBehaviour
                     pickUpDistance, pickUpLayerMask)) return;
             if (!raycastHit.transform.TryGetComponent(out pickableObject)) return;
             pickableObject.Pick(pickableObjectPoint);
+            if (raycastHit.transform.TryGetComponent(out portable)) portable.onHold = true;
             Physics.IgnoreCollision(playerCollider, pickableObject._collider, true);
             throwAction.action.performed += Throw;
             PlayerFSM.ChangeShoot();
@@ -58,6 +60,8 @@ public class PickUpDrop : MonoBehaviour
             pickableObject.Drop();
             Physics.IgnoreCollision(playerCollider, pickableObject._collider, false);
             pickableObject = null;
+            if(portable != null) portable.onHold = true;
+            portable = null;
             throwAction.action.performed -= Throw;
             PlayerFSM.ChangeShoot();
         }
@@ -69,6 +73,8 @@ public class PickUpDrop : MonoBehaviour
         pickableObject.Drop();
         Physics.IgnoreCollision(playerCollider, pickableObject._collider, false);
         pickableObject = null;
+        if(portable != null) portable.onHold = true;
+        portable = null;
         throwAction.action.performed -= Throw;
         PlayerFSM.ChangeShoot();
     }

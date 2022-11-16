@@ -24,6 +24,8 @@ public class PortalableObject : MonoBehaviour
     private static readonly Quaternion halfTurn = Quaternion.Euler(0.0f, 180.0f, 0.0f);
     private CharacterController controller;
 
+    public bool onHold = false;
+
     protected virtual void Awake()
     {
         cloneObject = Instantiate(cloneObject);
@@ -94,7 +96,6 @@ public class PortalableObject : MonoBehaviour
 
     public virtual void Warp()
     {
-        if(pickable != null && pickable.pickPoint != null) return;
         var inTransform = inPortal.PortalTransform;
         var outTransform = outPortal.PortalTransform;
 
@@ -132,5 +133,6 @@ public class PortalableObject : MonoBehaviour
         
         // Swap portal references.
         (inPortal, outPortal) = (outPortal, inPortal);
+        if(onHold) ExitPortal(wallCollider);
     }
 }

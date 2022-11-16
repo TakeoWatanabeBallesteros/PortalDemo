@@ -15,6 +15,7 @@ public class TurretBehaviour : MonoBehaviour
     {
         bool isAlive = Vector3.Dot(transform.up, Vector3.up) > Mathf.Cos(alifeAngleInDegrees * Mathf.Deg2Rad);
         laser.laser.enabled = isAlive;
+        laser.laserLimitCollider.enabled = isAlive;
         if(!isAlive) return;
         laser.UpdateLaser();
     }
