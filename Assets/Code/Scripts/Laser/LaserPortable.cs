@@ -17,6 +17,7 @@ public class LaserPortable : MonoBehaviour
     private Laser laser;
     private static readonly Quaternion halfTurn = Quaternion.Euler(0.0f, 180.0f, 0.0f);
 
+    public PortalBehaviour myPortal {get; private set; }
 
     private void Update()
     {
@@ -59,6 +60,7 @@ public class LaserPortable : MonoBehaviour
 
         portalLaser = Instantiate(laserPrefab);
         laser = portalLaser.GetComponent<Laser>();
+        portalLaser.GetComponent<LaserPortable>().myPortal = outPortal;
     }
     
     public void ExitPortal()

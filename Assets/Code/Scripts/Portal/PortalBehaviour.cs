@@ -95,7 +95,7 @@ public class PortalBehaviour : MonoBehaviour
             portalObjects.Remove(obj);
             obj.ExitPortal(wallCollider);
         } 
-        else if (other.TryGetComponent<LaserPortable>(out var laser))
+        else if (other.TryGetComponent<LaserPortable>(out var laser) && (laser.myPortal == null ||laser.myPortal != this))
         {
             laser.ExitPortal();
         }
