@@ -15,11 +15,15 @@ public class GameManager : MonoBehaviour
     private Transform player;
     
     //settings
-    public float sensibility {get; private set; }
+    public float sensibility { get; private set; } = 10;
     
     private void Awake()
     {
-        if (instance) return;
+        if (instance)
+        {
+            Destroy(gameObject);
+            return;
+        }
         instance = this;
         DontDestroyOnLoad(gameObject);
     }
