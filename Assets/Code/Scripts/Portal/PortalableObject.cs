@@ -132,7 +132,7 @@ public class PortalableObject : MonoBehaviour
         }
         
         // Swap portal references.
+        if(onHold) inPortal.ExitPortal(this);
         (inPortal, outPortal) = (outPortal, inPortal);
-        if(onHold) ExitPortal(wallCollider);
     }
 }

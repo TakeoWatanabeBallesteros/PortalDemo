@@ -50241,10 +50241,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 7792556665839154823, guid: 9f3207bbc60f6da4d8b01632b50e7215, type: 3}
-      propertyPath: laser.layerMask.m_Bits
-      value: 2043
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f3207bbc60f6da4d8b01632b50e7215, type: 3}
 --- !u!1001 &5490959273932611783

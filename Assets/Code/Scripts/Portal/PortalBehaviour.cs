@@ -91,17 +91,16 @@ public class PortalBehaviour : MonoBehaviour
     protected virtual void OnTriggerExit(Collider other)
     {
         var obj = other.GetComponent<PortalableObject>();
+        PortalableObject portable = null;
 
-        if(portalObjects.Contains(obj) && !obj.onHold)
-        {
-            if (obj.TryGetComponent<PickUpDrop>(out var item))
-            {
-                item.pickableObject.GetComponent<PortalableObject>();
-            }   
-            portalObjects.Remove(obj);
-            obj.ExitPortal(wallCollider);
-        }
-        
+        if (!portalObjects.Contains(obj) || obj.onHold) return;
+        portalObjects.Remove(obj);
+        obj.ExitPortal(wallCollider);
+        if (!obj.TryGetComponent<PickUpDrop>(out var item)) return;
+        if (item.pickableObject == null || !item.pickableObject.TryGetComponent<PortalableObject>(out portable)) return;
+        portable.onHold = false;
+        portable.Warp();
+        portable.onHold = true;
     }
     
     public void SetTexture(RenderTexture tex)
@@ -123,5 +122,12 @@ public class PortalBehaviour : MonoBehaviour
     public void Place()
     {
         IsPlaced = true;
+    }
+
+    public void ExitPortal(PortalableObject obj)
+    {
+        if (!portalObjects.Contains(obj)) return;
+        portalObjects.Remove(obj);
+        obj.ExitPortal(wallCollider);
     }
 }

@@ -146,7 +146,7 @@ MonoBehaviour:
     <laser>k__BackingField: {fileID: 7236014605885711665}
     layerMask:
       serializedVersion: 2
-      m_Bits: 2043
+      m_Bits: 1787
     maxLaserDistance: 250
     <laserLimitCollider>k__BackingField: {fileID: 8709436421863207088}
 --- !u!65 &8853674757106411859
