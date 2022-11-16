@@ -37,11 +37,13 @@ public class PickableObject : MonoBehaviour
     private void Update()
     {
         if(pickPoint == null) return;
-        if (Vector3.Distance(transform.position, pickPoint.position) > 0.1f)
+        if (!(Vector3.Distance(transform.position, pickPoint.position) > 0.1f))
         {
-            Vector3 direction = (pickPoint.position - transform.position);
-            rigidBody.AddForce(direction * 100.0f);
+            rigidBody.velocity = Vector3.Slerp(rigidBody.velocity, Vector3.zero, Time.deltaTime*15f);
+            return;
         }
+        var direction = (pickPoint.position - transform.position).normalized;
+        rigidBody.AddForce(direction * 50.0f);
     }
 
     private void FixedUpdate()

@@ -65,6 +65,7 @@ public class PickUpDrop : MonoBehaviour
 
     private void Throw(InputAction.CallbackContext context)
     {
+        pickableObject.rigidBody.velocity = Vector3.zero;
         pickableObject.rigidBody.AddForce(cameraPosition.forward * 1000.0f);
         pickableObject.Drop();
         Physics.IgnoreCollision(playerCollider, pickableObject._collider, false);
