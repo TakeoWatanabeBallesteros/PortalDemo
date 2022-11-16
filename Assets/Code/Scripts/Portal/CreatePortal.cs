@@ -14,6 +14,8 @@ public class CreatePortal : MonoBehaviour
     [SerializeField] 
     public InputActionReference changeScaleInput;
     [SerializeField] 
+    private Transform head;
+    [SerializeField] 
     public PortalBehaviour bluePortal;
     [SerializeField] 
     public PortalBehaviour orangePortal;
@@ -70,7 +72,7 @@ public class CreatePortal : MonoBehaviour
     void Update()
     {
         if(!PlayerFSM.canShoot) return;
-        portalImage.SetActive(IsValidPosition(Camera.main.transform.position, Camera.main.transform.forward, 100, out position, out normal));
+        portalImage.SetActive(IsValidPosition(head.position, head.forward, 100, out position, out normal));
     }
     
     public bool IsValidPosition(Vector3 startPosition, Vector3 forward, float maxDistance, out Vector3 position, out Vector3 normal)
