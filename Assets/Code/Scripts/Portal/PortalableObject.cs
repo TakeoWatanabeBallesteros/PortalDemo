@@ -7,8 +7,6 @@ public class PortalableObject : MonoBehaviour
 {
     [SerializeField]
     protected GameObject cloneObject;
-    [SerializeField]
-    protected PickableObject pickable;
 
     private int inPortalCount = 0;
 

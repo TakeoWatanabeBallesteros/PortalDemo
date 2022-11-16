@@ -10,6 +10,7 @@ public class TurretBehaviour : MonoBehaviour
     [SerializeField]
     private float alifeAngleInDegrees = 30.0f;
 
+
     // Update is called once per frame
     private void Update()
     {

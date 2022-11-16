@@ -65,8 +65,9 @@ public class PlayerLook : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        sensibility= GameManager.GetGameManager().sensibility;
         yaw = 0;
         pitch = 0;
         
@@ -77,7 +78,7 @@ public class PlayerLook : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Look();
     }
@@ -134,9 +135,6 @@ public class PlayerLook : MonoBehaviour
         direction = Quaternion.LookRotation(playerHead.forward, Vector3.up);
         yaw = direction.eulerAngles.y;
         pitch = direction.eulerAngles.x;
-        // pitch = ClampAngle(pitch, bottomClamp, topClamp);
-        // playerHead.localRotation = Quaternion.Euler(pitch, 0.0f, 0.0f);
-        // transform.rotation = Quaternion.Euler(0.0f, yaw, 0.0f);
     }
 
     public float GetPitch()

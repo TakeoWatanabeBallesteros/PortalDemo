@@ -15,6 +15,8 @@ public class PickUpDrop : MonoBehaviour
     [SerializeField] 
     private Transform cameraPosition;
     [SerializeField] 
+    private Transform playerForward;
+    [SerializeField] 
     private float pickUpDistance;
     [SerializeField] 
     private LayerMask pickUpLayerMask;
@@ -48,7 +50,7 @@ public class PickUpDrop : MonoBehaviour
             if (!Physics.Raycast(cameraPosition.position, cameraPosition.forward, out RaycastHit raycastHit,
                     pickUpDistance, pickUpLayerMask)) return;
             if (!raycastHit.transform.TryGetComponent(out pickableObject)) return;
-            pickableObject.Pick(pickableObjectPoint);
+            pickableObject.Pick(pickableObjectPoint, playerForward);
             Physics.IgnoreCollision(playerCollider, pickableObject._collider, true);
             throwAction.action.performed += Throw;
             PlayerFSM.ChangeShoot();

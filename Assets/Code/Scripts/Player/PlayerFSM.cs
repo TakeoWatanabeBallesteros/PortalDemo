@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using FSM;
 
-public class PlayerFSM : MonoBehaviour
+public class PlayerFSM : MonoBehaviour, IReset
 {
     [Header("Inputs")] 
     [SerializeField] 
@@ -79,7 +79,7 @@ public class PlayerFSM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tpPosition = transform.position;
+        // tpPosition = transform.position;
         fsm = new StateMachine();
         controller = GetComponent<CharacterController>();
         
@@ -91,6 +91,8 @@ public class PlayerFSM : MonoBehaviour
 
         canShoot = true;
         canThrow = !canShoot;
+        
+        GameManager.GetGameManager().SetPlayer(transform);
     }
     // Update is called once per frame
     void Update()
@@ -123,7 +125,17 @@ public class PlayerFSM : MonoBehaviour
         fsm.AddTransition("Fall", "Land", t => grounded);
         fsm.AddTransitionFromAny(new Transition("", "Jump", t => jumpInput.action.triggered && grounded));
         fsm.AddTransitionFromAny(new Transition("", "Fall", t => verticalVelocity <= 0 && !grounded));
+        fsm.AddTriggerTransitionFromAny(
+            "Reset"
+            ,new Transition("", "Idle", t => true));
     }
 
     public static void ChangeShoot() => (canShoot, canThrow) = (canThrow, canShoot);
+    public void Reset()
+    {
+        fsm.Trigger("Reset");
+        
+        canShoot = true;
+        canThrow = !canShoot;
+    }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PortalBehaviour : MonoBehaviour
+public class PortalBehaviour : MonoBehaviour, IReset
 {
     [SerializeField] 
     protected bool isRecursive;
@@ -31,6 +31,8 @@ public class PortalBehaviour : MonoBehaviour
     public float scale;
     private RenderTexture tempTexture;
 
+    private Vector3 startPosition;
+
     protected virtual void OnEnable()
     {
         if(!isRecursive)IsPlaced = true;
@@ -48,6 +50,8 @@ public class PortalBehaviour : MonoBehaviour
         tempTexture = new RenderTexture(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32);
         material.mainTexture = tempTexture;
         portalCamera.targetTexture = tempTexture;
+
+        startPosition = transform.position;
     }
 
     protected virtual void Update()
@@ -120,5 +124,13 @@ public class PortalBehaviour : MonoBehaviour
     public void Place()
     {
         IsPlaced = true;
+    }
+
+    public void Reset()
+    {
+        startPosition = transform.position;
+        portalObjects.Clear();
+        IsPlaced = false;
+        scale = 1;
     }
 }

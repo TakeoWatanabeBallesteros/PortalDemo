@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CreatePortal : MonoBehaviour
+public class CreatePortal : MonoBehaviour, IReset
 {
     [SerializeField] 
     public InputActionReference bluePortalShoot;
@@ -160,6 +160,12 @@ public class CreatePortal : MonoBehaviour
             2 => 0.5f,
             _ => PortalsScale
         };
+        portalImage.transform.parent.localScale = new Vector3(PortalsScale, PortalsScale, PortalsScale);
+    }
+
+    public void Reset()
+    {
+        PortalsScale = 1.0f;
         portalImage.transform.parent.localScale = new Vector3(PortalsScale, PortalsScale, PortalsScale);
     }
 }
