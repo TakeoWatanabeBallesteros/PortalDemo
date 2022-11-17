@@ -71,12 +71,24 @@ public class PortalBehaviour : MonoBehaviour, IReset
     protected virtual void LateUpdate()
     {
         if(isRecursive) return;
-        Quaternion direction = Quaternion.Inverse(transform.rotation) * playerCamera.rotation;
+        var inTransform = PortalTransform;
+        var outTransform = mirrorPortal.PortalTransform;
+        /*Quaternion direction = Quaternion.Inverse(transform.rotation) * playerCamera.rotation;
         mirrorPortal.portalCamera.transform.localEulerAngles = new Vector3(direction.eulerAngles.x,
                                                                          direction.eulerAngles.y + 180,
                                                                            direction.eulerAngles.z);
         Vector3 distance = transform.InverseTransformPoint(playerCamera.position);
-        mirrorPortal.portalCamera.transform.localPosition = -new Vector3(distance.x, -distance.y, distance.z);
+        mirrorPortal.portalCamera.transform.localPosition = -new Vector3(distance.x, -distance.y, distance.z);*/
+        // Position the camera behind the other portal.
+        
+        Vector3 relativePos = inTransform.InverseTransformPoint(playerCamera.position);
+        relativePos = Quaternion.Euler(0.0f, 180.0f, 0.0f) * relativePos;
+        portalCamera.transform.position = outTransform.TransformPoint(relativePos);
+
+        // Rotate the camera to look through the other portal.
+        Vector3 relativeRot = inTransform.InverseTransformDirection(playerCamera.forward);
+        relativeRot = Quaternion.Euler(0.0f, 180.0f, 0.0f) * relativeRot;
+        portalCamera.transform.forward = outTransform.TransformDirection(relativeRot);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
