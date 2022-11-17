@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30bd192c23f216a4f942950a2381b4e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Spawned: 0
 --- !u!114 &1997602118693055469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,9 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cloneObject: {fileID: 2377448103889210313, guid: 0ad10d81acdcd254c800884541931078, type: 3}
-  pickable: {fileID: 4904080147795170720}
   collider: {fileID: 1480281181548945529}
-  onHold: 0
 --- !u!114 &7567609239646765547
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -26,4 +26,10 @@ public class DoorBehaviour : PortalBehaviour
         if(!open) return;
         base.OnTriggerEnter(other);
     }
+
+    public override void Reset()
+    {
+        return;
+        base.Reset();
+    }
 }

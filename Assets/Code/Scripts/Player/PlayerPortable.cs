@@ -25,6 +25,7 @@ public class PlayerPortable : PortalableObject
     public override void Warp()
     {
         base.Warp();
+        GetComponent<PickUpDrop>().pickableObject?.SwitchPickPoint(inPortal, outPortal);
         cameraMove.ResetTargetRotation();
     }
 }

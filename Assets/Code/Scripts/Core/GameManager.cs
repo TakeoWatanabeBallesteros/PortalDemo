@@ -7,6 +7,7 @@ using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
+    public bool reset;
     private static GameManager instance;
     private List<IReset> resetObjects;
     private int checkPoinReference;
@@ -31,7 +32,14 @@ public class GameManager : MonoBehaviour
     {
         return instance == null ? null : instance;
     }
-    
+
+    private void Update()
+    {
+        if(!reset) return;
+        ResetGame();
+        reset = false;
+    }
+
     public void SetPlayer(Transform player)
     {
         this.player = player;
@@ -44,12 +52,13 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        foreach (var obj in resetObjects) {
-            obj.Reset();
-        }
         StartCoroutine(TeleportToCheckpoint());
         player.position = currentCheckpointPos;
         player.rotation = currentCheckpointRot;
+        foreach (var other in resetObjects.ToList())
+        {
+            other.Reset();
+        }
     }
 
     private IEnumerator TeleportToCheckpoint()
@@ -63,6 +72,16 @@ public class GameManager : MonoBehaviour
     {
         var resetObj = FindObjectsOfType<MonoBehaviour>().OfType<IReset>();
         return resetObj.ToList();
+    }
+
+    public void AddResetObject(IReset obj)
+    {
+        resetObjects.Add(obj);
+    }
+    
+    public void RemoveResetObject(IReset obj)
+    {
+        resetObjects.Remove(obj);
     }
     
     public void SetCheckpoint(Transform checkpoint, int reference)

@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.LowLevel;
 
-public class PlayerLook : MonoBehaviour
+public class PlayerLook : MonoBehaviour, IReset
 {
     [SerializeField] 
     private InputActionReference lookInput;
@@ -140,5 +140,11 @@ public class PlayerLook : MonoBehaviour
     public float GetPitch()
     {
         return pitch;
+    }
+
+    public void Reset()
+    {
+        yaw = transform.rotation.y;
+        pitch = playerHead.localRotation.x;
     }
 }

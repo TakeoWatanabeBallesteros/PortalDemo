@@ -32,4 +32,12 @@ public class Laser : MonoBehaviour
         laser.SetPosition(1, new Vector3(0.0f, 0.0f,laserDistance));
         laserLimitCollider.center = new Vector3(0.0f, 0.0f, laserDistance);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameManager.GetGameManager().reset = true;
+        }
+    }
 }

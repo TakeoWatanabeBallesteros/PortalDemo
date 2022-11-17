@@ -50,7 +50,7 @@ public class PickUpDrop : MonoBehaviour
             if (!Physics.Raycast(cameraPosition.position, cameraPosition.forward, out RaycastHit raycastHit,
                     pickUpDistance, pickUpLayerMask)) return;
             if (!raycastHit.transform.TryGetComponent(out pickableObject)) return;
-            pickableObject.Pick(pickableObjectPoint, playerForward);
+            pickableObject.Pick(pickableObjectPoint, playerForward, this);
             Physics.IgnoreCollision(playerCollider, pickableObject._collider, true);
             throwAction.action.performed += Throw;
             PlayerFSM.ChangeShoot();
@@ -69,6 +69,15 @@ public class PickUpDrop : MonoBehaviour
     {
         pickableObject.rigidBody.velocity = Vector3.zero;
         pickableObject.rigidBody.AddForce(cameraPosition.forward * 1000.0f);
+        pickableObject.Drop();
+        Physics.IgnoreCollision(playerCollider, pickableObject._collider, false);
+        pickableObject = null;
+        throwAction.action.performed -= Throw;
+        PlayerFSM.ChangeShoot();
+    }
+
+    public void Detach()
+    {
         pickableObject.Drop();
         Physics.IgnoreCollision(playerCollider, pickableObject._collider, false);
         pickableObject = null;

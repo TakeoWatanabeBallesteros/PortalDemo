@@ -16,7 +16,8 @@ public class DropCubes : MonoBehaviour
     public void Spawn()
     {
         if(!canSpawn) return;
-        Instantiate(cubePrefab, spawnPoint.position, spawnPoint.rotation);
+        var obj = Instantiate(cubePrefab, spawnPoint.position, spawnPoint.rotation);
+        if (obj.TryGetComponent<PickableObject>(out var comp)) comp.Spawned = true;
         canSpawn = false;
         StartCoroutine(CoolDown());
     }

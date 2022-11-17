@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PortalBehaviour : MonoBehaviour, IReset
@@ -58,13 +59,12 @@ public class PortalBehaviour : MonoBehaviour, IReset
     {
         Renderer.enabled = mirrorPortal.IsPlaced;
         
-        for (int i = 0; i < portalObjects.Count; ++i)
+        foreach (var t in from t in portalObjects let objPos 
+                     = PortalTransform.InverseTransformPoint(t.transform.position) where objPos.z > 0 select t)
         {
-            Vector3 objPos = PortalTransform.InverseTransformPoint(portalObjects[i].transform.position);
-            if (objPos.z > 0)
-            {
-                portalObjects[i].Warp();
-            }
+            t.Warp();
+            if(!t.TryGetComponent<PickableObject>(out var comp)) return;
+            comp.SwitchPickPoint(this, mirrorPortal);
         }
     }
 
@@ -126,9 +126,9 @@ public class PortalBehaviour : MonoBehaviour, IReset
         IsPlaced = true;
     }
 
-    public void Reset()
+    public virtual void Reset()
     {
-        startPosition = transform.position;
+        transform.position = new Vector3(0,-10000,0); 
         portalObjects.Clear();
         IsPlaced = false;
         scale = 1;

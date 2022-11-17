@@ -10,8 +10,8 @@ public class PortalableObject : MonoBehaviour
 
     private int inPortalCount = 0;
 
-    private PortalBehaviour inPortal;
-    private PortalBehaviour outPortal;
+    protected PortalBehaviour inPortal;
+    protected PortalBehaviour outPortal;
 
     private new Rigidbody rigidbody;
     
