@@ -146,5 +146,8 @@ public class PlayerLook : MonoBehaviour, IReset
     {
         yaw = transform.rotation.y;
         pitch = playerHead.localRotation.x;
+        zoom = 60;
+        camera1.fieldOfView = zoom;
+        camera2.fieldOfView = zoom + 20;
     }
 }

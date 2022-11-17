@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class CreatePortal : MonoBehaviour, IReset
 {
@@ -35,6 +36,13 @@ public class CreatePortal : MonoBehaviour, IReset
     private float maxValidDistance;
     [SerializeField] 
     private float minDotAngle;
+    [SerializeField] 
+    private Image crosshair;
+
+    public Sprite noPortals;
+    public Sprite _bluePortal;
+    public Sprite _orangePortal;
+    public Sprite bothPortals;
     
     private Vector3 position;
     private Vector3 normal;
@@ -138,6 +146,7 @@ public class CreatePortal : MonoBehaviour, IReset
                 bluePortal.transform.rotation = Quaternion.LookRotation(normal);
                 bluePortal.PortalAnimator.SetFloat(AnimationScaleID, PortalsScale);
                 bluePortal.scale = PortalsScale;
+                bluePortal.Place();
                 break;
             case 2:
                 orangePortal.gameObject.SetActive(true);
@@ -147,8 +156,17 @@ public class CreatePortal : MonoBehaviour, IReset
                 orangePortal.transform.rotation = Quaternion.LookRotation(normal);
                 orangePortal.PortalAnimator.SetFloat(AnimationScaleID, PortalsScale);
                 orangePortal.scale = PortalsScale;
+                orangePortal.Place();
                 break;
         }
+
+        crosshair.sprite = bluePortal.IsPlaced switch
+        {
+            true when orangePortal.IsPlaced => bothPortals,
+            true when !orangePortal.IsPlaced => _bluePortal,
+            false when orangePortal.IsPlaced => _orangePortal,
+            _ => crosshair.sprite
+        };
     }
 
     private void ScalePortals(InputAction.CallbackContext context)
@@ -167,5 +185,6 @@ public class CreatePortal : MonoBehaviour, IReset
     {
         PortalsScale = 1.0f;
         portalImage.transform.parent.localScale = new Vector3(PortalsScale, PortalsScale, PortalsScale);
+        crosshair.sprite = noPortals;
     }
 }
